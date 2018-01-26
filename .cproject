@@ -62,6 +62,8 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/threads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_garbage.724367117" name="Prepare dead code removal " superClass="com.atollic.truestudio.gcc.optimization.prep_garbage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_data.1470392513" name="Prepare dead data removal" superClass="com.atollic.truestudio.gcc.optimization.prep_data" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -195,6 +197,8 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/threads}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src}&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_garbage.601164176" name="Prepare dead code removal " superClass="com.atollic.truestudio.gcc.optimization.prep_garbage" value="true" valueType="boolean"/>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_data.926544590" name="Prepare dead data removal" superClass="com.atollic.truestudio.gcc.optimization.prep_data" value="true" valueType="boolean"/>

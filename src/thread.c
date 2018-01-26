@@ -11,6 +11,9 @@
 #include "thread2.h"
 #include "thread3.h"
 #include "thread4.h"
+#include "thread5.h"
+#include "thread6.h"
+#include "thread7.h"
 
 #define EXPAND_AS_THREAD_ATTR(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
 	osThreadAttr_t _name##_attr =                                                                                   \

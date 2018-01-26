@@ -15,6 +15,7 @@
 #include "thread.h"
 #include "semaphore.h"
 #include "mutex.h"
+#include "event_flags.h"
 
 /* main function */
 int main(void)
@@ -22,9 +23,12 @@ int main(void)
     /* Initialize CMSIS-RTOS */
     osKernelInitialize ();
 
-    /* Initialize Objects */
+    /* Initialize RTOS Objects */
     semaphore_init();
     mutex_init();
+    event_flags_init();
+
+    /* Initialize Threads */
     thread_init();
 
     /* Start thread execution */
