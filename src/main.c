@@ -16,6 +16,7 @@
 #include "semaphore.h"
 #include "mutex.h"
 #include "event_flags.h"
+#include "message_queue.h"
 
 /* main function */
 int main(void)
@@ -27,6 +28,7 @@ int main(void)
     semaphore_init();
     mutex_init();
     event_flags_init();
+    message_queue_init();
 
     /* Initialize Threads */
     thread_init();

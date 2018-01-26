@@ -22,10 +22,4 @@ void event_flags_init(void)
 {
 	/* Create mutex objects */
     EVENT_FLAGS_TABLE(EXPAND_AS_EVENT_FLAGS_NEW)
-
-#ifdef DEBUG
-	/* For RTOS aware debugging we need to register the mutexes */
-    EVENT_FLAGS_TABLE(EXPAND_AS_EVENT_FLAGS_ADD_TO_REGISTRY)
-#endif
-
 }

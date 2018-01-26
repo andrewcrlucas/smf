@@ -22,7 +22,9 @@
 	ENTRY(thread4, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
 	ENTRY(thread5, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
 	ENTRY(thread6, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
-	ENTRY(thread7, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0)
+	ENTRY(thread7, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
+	ENTRY(thread8, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
+	ENTRY(thread9, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0)
 
 #define EXPAND_AS_THREAD_IDS(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
     osThreadId_t g_##_name##_id;
