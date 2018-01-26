@@ -9,11 +9,12 @@
  * Includes                                                                  *
  *****************************************************************************/
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 /* project */
-#include "RTE_Components.h"             // Component selection
+#include "RTE_Components.h"
 #include "thread.h"
 #include "semaphore.h"
+#include "mutex.h"
 
 /* main function */
 int main(void)
@@ -23,6 +24,7 @@ int main(void)
 
     /* Initialize Objects */
     semaphore_init();
+    mutex_init();
     thread_init();
 
     /* Start thread execution */

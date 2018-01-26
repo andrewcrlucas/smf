@@ -12,7 +12,7 @@
  * Includes                                                                  *
  *****************************************************************************/
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 
 #define SEMAPHORE_TABLE(ENTRY)                   \
 	  /* _name, _count, _initial_count, _attr */ \

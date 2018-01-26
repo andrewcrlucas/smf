@@ -11,11 +11,9 @@
 /* module */
 #include "semaphore.h"
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 #include "FreeRTOS.h"
 #include "queue.h"
-/* project */
-#include "semaphore.h"
 
 #define EXPAND_AS_SEMAPHORE_NEW(_name, _count, _initial_count, _attr) g_##_name##_id = osSemaphoreNew(_count, _initial_count, _attr);
 #define EXPAND_AS_SEMAPHORE_ADD_TO_REGISTRY(_name, _count, _initial_count, _attr) vQueueAddToRegistry(g_##_name##_id, #_name);

@@ -17,7 +17,9 @@
 #define THREAD_TABLE(ENTRY) \
 	ENTRY(thread0, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
 	ENTRY(thread1, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
-	ENTRY(thread2, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0)
+	ENTRY(thread2, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
+	ENTRY(thread3, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0) \
+	ENTRY(thread4, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0)
 
 #define EXPAND_AS_THREAD_IDS(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
     osThreadId_t g_##_name##_id;

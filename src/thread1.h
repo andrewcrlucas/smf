@@ -10,4 +10,4 @@
 
 void thread1(void *);
 
-#endif /* THREAD0_H_ */
+#endif /* THREAD1_H_ */
