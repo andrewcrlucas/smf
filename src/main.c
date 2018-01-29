@@ -17,6 +17,7 @@
 #include "mutex.h"
 #include "event_flags.h"
 #include "message_queue.h"
+#include "os_timer.h"
 
 /* main function */
 int main(void)
@@ -29,9 +30,12 @@ int main(void)
     mutex_init();
     event_flags_init();
     message_queue_init();
+    os_timer_init();
 
     /* Initialize Threads */
     thread_init();
+
+    osTimerStart(g_my_os_timer_id, 100);
 
     /* Start thread execution */
     osKernelStart ();
