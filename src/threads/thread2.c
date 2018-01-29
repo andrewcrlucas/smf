@@ -11,7 +11,7 @@
 /* module */
 #include "thread2.h"
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 /* project */
 #include "semaphore.h"
 

@@ -31,7 +31,7 @@
 	};
 
 #define EXPAND_AS_THREAD_NEW(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
-    g_##_name##_id = osThreadNew(_name, (void *) 0, &_name##_attr);
+    g_##_name##_thread_id = osThreadNew(_name, (void *) 0, &_name##_attr);
 
 void thread_init(void)
 {

@@ -20,11 +20,11 @@
 
 void message_queue_init(void)
 {
-	/* Create semaphore objects */
+	/* Create message_queue objects */
     MESSAGE_QUEUE_TABLE(EXPAND_AS_MESSAGE_QUEUE_NEW)
 
 #ifdef DEBUG
-	/* For RTOS aware debugging we need to register the semaphores */
+	/* For RTOS aware debugging we need to register the message_queues */
     MESSAGE_QUEUE_TABLE(EXPAND_AS_MESSAGE_QUEUE_ADD_TO_REGISTRY)
 #endif
 

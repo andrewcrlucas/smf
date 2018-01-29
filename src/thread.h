@@ -27,7 +27,7 @@
 	ENTRY(thread9, osThreadDetached, 0, 0, 0, 0, osPriorityNormal, 0)
 
 #define EXPAND_AS_THREAD_IDS(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
-    osThreadId_t g_##_name##_id;
+    osThreadId_t g_##_name##_thread_id;
 
 /* Global Objects */
 THREAD_TABLE(EXPAND_AS_THREAD_IDS)

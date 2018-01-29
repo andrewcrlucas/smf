@@ -11,7 +11,7 @@
 /* module */
 #include "thread0.h"
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 
 void thread0(void *me)
 {

@@ -11,7 +11,7 @@
 /* module */
 #include "thread9.h"
 /* os */
-#include "cmsis_os2.h" /* CMSIS RTOS header file */
+#include "cmsis_os2.h"
 /* project */
 #include "message_queue.h"
 #include "thread8.h"

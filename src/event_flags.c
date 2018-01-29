@@ -20,6 +20,6 @@
 
 void event_flags_init(void)
 {
-	/* Create mutex objects */
+	/* Create event_flags objects */
     EVENT_FLAGS_TABLE(EXPAND_AS_EVENT_FLAGS_NEW)
 }
