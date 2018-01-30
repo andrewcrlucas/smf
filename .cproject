@@ -56,6 +56,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/os/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/app/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/smf/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/CMSIS/RTOS2/FreeRTOS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
@@ -119,19 +120,21 @@
 								<option id="com.atollic.truestudio.common_options.target.fpucore.1825360704" name="FPU" superClass="com.atollic.truestudio.common_options.target.fpucore" useByScannerDiscovery="false" value="com.atollic.truestudio.common_options.target.fpucore.fpv5-sp-d16" valueType="enumerated"/>
 								<option id="com.atollic.truestudio.ldcc.misc.linkerflags.1390885049" name="Other options" superClass="com.atollic.truestudio.ldcc.misc.linkerflags" useByScannerDiscovery="false" value="-Wl,-cref,-u,Reset_Handler " valueType="string"/>
 								<option id="com.atollic.truestudio.ldcc.optimization.do_garbage.745812732" name="Dead code removal" superClass="com.atollic.truestudio.ldcc.optimization.do_garbage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
-								<option id="com.atollic.truestudio.ldcc.general.scriptfile.1176902974" name="Linker script" superClass="com.atollic.truestudio.ldcc.general.scriptfile" value="C:\Users\al100017\Atollic\TrueSTUDIO\STM32_workspace_9.0\BareBonesF7\STM32F746NG_FLASH.ld" valueType="string"/>
-								<option id="com.atollic.truestudio.ldcc.misc.genmapfile.1783885302" name="Create map file" superClass="com.atollic.truestudio.ldcc.misc.genmapfile"/>
+								<option id="com.atollic.truestudio.ldcc.general.scriptfile.1176902974" name="Linker script" superClass="com.atollic.truestudio.ldcc.general.scriptfile" useByScannerDiscovery="false" value="C:\Users\al100017\Atollic\TrueSTUDIO\STM32_workspace_9.0\BareBonesF7\STM32F746NG_FLASH.ld" valueType="string"/>
+								<option id="com.atollic.truestudio.ldcc.misc.genmapfile.1783885302" name="Create map file" superClass="com.atollic.truestudio.ldcc.misc.genmapfile" useByScannerDiscovery="false"/>
 								<inputType id="com.atollic.truestudio.ldcc.input.2033778649" name="Input" superClass="com.atollic.truestudio.ldcc.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
 							<tool id="com.atollic.truestudio.ar.base.1529184681" name="Archiver" superClass="com.atollic.truestudio.ar.base"/>
-							<tool command="arm-atollic-reports.jar" commandLinePattern="${COMMAND} ${FLAGS} ${INPUTS}" errorParsers="" id="com.atollic.truestudio.exe.debug.toolchain.secoutput.153600110" name="Other" superClass="com.atollic.truestudio.exe.debug.toolchain.secoutput"/>
+							<tool command="arm-atollic-reports.jar" commandLinePattern="${COMMAND} ${FLAGS} ${INPUTS}" errorParsers="" id="com.atollic.truestudio.exe.debug.toolchain.secoutput.153600110" name="Other" superClass="com.atollic.truestudio.exe.debug.toolchain.secoutput">
+								<option id="com.atollic.truestudio.secoutput.general.convert.707663169" superClass="com.atollic.truestudio.secoutput.general.convert" useByScannerDiscovery="false" value="true" valueType="boolean"/>
+							</tool>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/smf/state_machine.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -192,6 +195,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src/threads}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BareBonesF7/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/src/app/inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/src/smf/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/CMSIS/RTOS2/FreeRTOS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
@@ -263,6 +267,9 @@
 							<tool id="com.atollic.truestudio.exe.release.toolchain.secoutput.638334041" name="Other" superClass="com.atollic.truestudio.exe.release.toolchain.secoutput"/>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="src/smf/state_machine.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
