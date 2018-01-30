@@ -1,8 +1,5 @@
 /*
  * const.h
- *
- *  Created on: Jan 26, 2018
- *      Author: al100017
  */
 
 #ifndef CONST_H_

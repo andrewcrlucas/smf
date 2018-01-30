@@ -1,8 +1,5 @@
 /*
  * assert.h
- *
- *  Description:  Provides assert functionality
- *
  */
 
 #ifndef ASSERT_H

@@ -1,8 +1,5 @@
 /*
  * os_event_flags.h
- *
- *  Created on: Jan 26, 2018
- *      Author: al100017
  */
 
 #ifndef OS_EVENT_FLAGS_H_

@@ -1,8 +1,5 @@
 /*
  * os_timer.h
- *
- *  Created on: Jan 29, 2018
- *      Author: Andrew Lucas
  */
 
 #ifndef OS_TIMER_H_

@@ -1,8 +1,5 @@
 /*
  * os_mutex.h
- *
- *  Created on: Jan 26, 2018
- *      Author: al100017
  */
 
 #ifndef OS_MUTEX_H_

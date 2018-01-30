@@ -1,8 +1,5 @@
 /*
  * os_message_queue.h
- *
- *  Created on: Jan 25, 2018
- *      Author: Andrew Lucas
  */
 
 #ifndef OS_MESSAGE_QUEUE_H_

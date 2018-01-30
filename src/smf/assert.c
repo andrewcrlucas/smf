@@ -1,8 +1,5 @@
 /*
  * assert.c
- *
- *  Description:  Provides assert functionality
- *
  */
 
 /*****************************************************************************

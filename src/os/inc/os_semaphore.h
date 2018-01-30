@@ -1,8 +1,5 @@
 /*
  * os_semaphore.h
- *
- *  Created on: Jan 25, 2018
- *      Author: Andrew Lucas
  */
 
 #ifndef OS_SEMAPHORE_H_
