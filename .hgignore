@@ -4,3 +4,4 @@ syntax: glob
 *.map
 *.o
 *.su
+*.hex
