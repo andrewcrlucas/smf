@@ -5,8 +5,10 @@
  *      Author: al100017
  */
 
-#ifndef SRC_CONST_H_
-#define SRC_CONST_H_
+#ifndef CONST_H_
+#define CONST_H_
+
+#include <stdint.h>
 
 /* Bit definitions */
 #define BIT0 (1 << 0)
@@ -76,4 +78,45 @@
 #define FLAG30 (BIT30)
 #define FLAG31 (BIT31)
 
-#endif /* SRC_CONST_H_ */
+/* Most and Least significant byte macros */
+#define MSB(word)      (uint8_t)((((uint16_t)(word)) >> 8) & 0x00ffU)
+#define LSB(word)      (uint8_t)(((uint16_t)(word)) & 0x00ffU)
+
+/* Uppwer and lower nibble macros */
+#define LOWER_NIB(byte) (uint8_t)(byte & 0x0fU)
+#define UPPER_NIB(byte) (uint8_t)((byte & 0xf0U) >> 4)
+
+/* MACRO to determine the size in bytes of an element in a struct */
+#define SIZEOF(s, m) ((size_t) sizeof(((s *) 0)->m))
+/* MACRO to determine the number of elements in an array */
+#define NUM_ELEMENTS(x) (sizeof(x) / sizeof((x)[0]))
+
+/* MACRO to determine the number of element in an array that is a member of a
+ * struct */
+#define N_ELEMENTS(s, m) (SIZEOF(s, m) / SIZEOF(s, m[0]))
+
+/* MACRO to swap the byte ordering of a 16bit value */
+#define SWAP16(x) ((((x) >> 8) & 0x00ffU) | (((x) << 8) & 0xff00U))
+
+/* MACRO to swap the byte ordering of a 32bit value */
+#define SWAP32(x)                  \
+    ((((x) >> 24) & 0x000000ffu) | \
+     (((x) >> 8)  & 0x0000ff00u) | \
+     (((x) << 8)  & 0x00ff0000u) | \
+     (((x) << 24) & 0xff000000u))
+
+#define B8__(x)                                                       \
+    (((x & 0x0000000FUL) ?  1 : 0) + ((x & 0x000000F0UL) ?   2 : 0) + \
+     ((x & 0x00000F00UL) ?  4 : 0) + ((x & 0x0000F000UL) ?   8 : 0) + \
+     ((x & 0x000F0000UL) ? 16 : 0) + ((x & 0x00F00000UL) ?  32 : 0) + \
+     ((x & 0x0F000000UL) ? 64 : 0) + ((x & 0xF0000000UL) ? 128 : 0))
+
+#define HEX__(n) 0x##n##LU
+
+/* Convert a binary literal */
+#define B8(d) ((uint8_t) B8__(HEX__(d)))
+
+/* Macro to eliminate unused parameter warning */
+#define UNUSED_PARAMETER(p) { (p) = (p); }
+
+#endif /* CONST_H_ */
