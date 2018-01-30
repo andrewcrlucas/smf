@@ -1,12 +1,12 @@
 /*
- * thread.h
+ * os_thread.h
  *
  *  Created on: Jan 25, 2018
  *      Author: Andrew Lucas
  */
 
-#ifndef THREAD_H_
-#define THREAD_H_
+#ifndef OS_THREAD_H_
+#define OS_THREAD_H_
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -33,6 +33,6 @@
 THREAD_TABLE(EXPAND_AS_THREAD_IDS)
 
 /* Public Prototypes */
-void thread_init(void);
+void os_thread_init(void);
 
-#endif /* THREAD_H_ */
+#endif /* OS_THREAD_H_ */

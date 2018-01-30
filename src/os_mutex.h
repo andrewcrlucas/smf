@@ -1,12 +1,12 @@
 /*
- * mutex.h
+ * os_mutex.h
  *
  *  Created on: Jan 26, 2018
  *      Author: al100017
  */
 
-#ifndef SRC_MUTEX_H_
-#define SRC_MUTEX_H_
+#ifndef OS_MUTEX_H_
+#define OS_MUTEX_H_
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -24,6 +24,6 @@
 MUTEX_TABLE(EXPAND_AS_MUTEX_ID)
 
 /* Public Prototypes */
-void mutex_init(void);
+void os_mutex_init(void);
 
-#endif /* SRC_MUTEX_H_ */
+#endif /* OS_MUTEX_H_ */

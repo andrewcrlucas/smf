@@ -1,12 +1,12 @@
 /*
- * event_flags.h
+ * os_event_flags.h
  *
  *  Created on: Jan 26, 2018
  *      Author: al100017
  */
 
-#ifndef SRC_EVENT_FLAGS_H_
-#define SRC_EVENT_FLAGS_H_
+#ifndef OS_EVENT_FLAGS_H_
+#define OS_EVENT_FLAGS_H_
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -24,6 +24,6 @@
 EVENT_FLAGS_TABLE(EXPAND_AS_EVENT_FLAGS_ID)
 
 /* Public Prototypes */
-void event_flags_init(void);
+void os_event_flags_init(void);
 
-#endif /* SRC_EVENT_FLAGS_H_ */
+#endif /* OS_EVENT_FLAGS_H_ */

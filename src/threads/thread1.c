@@ -12,8 +12,7 @@
 #include "thread1.h"
 /* os */
 #include "cmsis_os2.h"
-/* project */
-#include "semaphore.h"
+#include "os_semaphore.h"
 
 void thread1(void *me)
 {

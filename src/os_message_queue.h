@@ -1,12 +1,12 @@
 /*
- * message_queue.h
+ * os_message_queue.h
  *
  *  Created on: Jan 25, 2018
  *      Author: Andrew Lucas
  */
 
-#ifndef MESSAGE_QUEUE_H_
-#define MESSAGE_QUEUE_H_
+#ifndef OS_MESSAGE_QUEUE_H_
+#define OS_MESSAGE_QUEUE_H_
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -24,6 +24,6 @@
 MESSAGE_QUEUE_TABLE(EXPAND_AS_MESSAGE_QUEUE_ID)
 
 /* Public Prototypes */
-void message_queue_init(void);
+void os_message_queue_init(void);
 
-#endif /* MESSAGE_QUEUE_H_ */
+#endif /* OS_MESSAGE_QUEUE_H_ */

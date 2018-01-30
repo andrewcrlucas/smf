@@ -1,12 +1,12 @@
 /*
- * semaphore.h
+ * os_semaphore.h
  *
  *  Created on: Jan 25, 2018
  *      Author: Andrew Lucas
  */
 
-#ifndef SEMAPHORE_H_
-#define SEMAPHORE_H_
+#ifndef OS_SEMAPHORE_H_
+#define OS_SEMAPHORE_H_
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -25,6 +25,6 @@
 SEMAPHORE_TABLE(EXPAND_AS_SEMAPHORE_ID)
 
 /* Public Prototypes */
-void semaphore_init(void);
+void os_semaphore_init(void);
 
-#endif /* SEMAPHORE_H_ */
+#endif /* OS_SEMAPHORE_H_ */

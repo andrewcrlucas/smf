@@ -12,8 +12,7 @@
 #include "thread8.h"
 /* os */
 #include "cmsis_os2.h"
-/* project */
-#include "message_queue.h"
+#include "os_message_queue.h"
 
 void thread8(void *me)
 {

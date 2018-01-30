@@ -12,8 +12,8 @@
 #include "thread9.h"
 /* os */
 #include "cmsis_os2.h"
+#include "os_message_queue.h"
 /* project */
-#include "message_queue.h"
 #include "thread8.h"
 
 void thread9(void *me)

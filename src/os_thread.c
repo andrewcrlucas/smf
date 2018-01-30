@@ -1,11 +1,13 @@
 /*
- * thread.c
+ * os_thread.c
  *
  *  Created on: Jan 25, 2018
  *      Author: Andrew Lucas
  */
 
-#include "thread.h"
+/* module */
+#include "os_thread.h"
+/* project */
 #include "thread0.h"
 #include "thread1.h"
 #include "thread2.h"
@@ -33,7 +35,7 @@
 #define EXPAND_AS_THREAD_NEW(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
     g_##_name##_thread_id = osThreadNew(_name, (void *) 0, &_name##_attr);
 
-void thread_init(void)
+void os_thread_init(void)
 {
     THREAD_TABLE(EXPAND_AS_THREAD_ATTR)
     THREAD_TABLE(EXPAND_AS_THREAD_NEW)

@@ -12,7 +12,7 @@
 #include "thread5.h"
 /* os */
 #include "cmsis_os2.h"
-#include "event_flags.h"
+#include "os_event_flags.h"
 /* project */
 #include "const.h"
 

@@ -1,5 +1,5 @@
 /*
- * osTimer.c
+ * os_timer.c
  *
  *  Created on: Jan 29, 2018
  *      Author: Andrew Lucas

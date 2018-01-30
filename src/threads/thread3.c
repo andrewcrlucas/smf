@@ -12,8 +12,7 @@
 #include "thread3.h"
 /* os */
 #include "cmsis_os2.h"
-/* project */
-#include "mutex.h"
+#include "os_mutex.h"
 
 void thread3(void *me)
 {
