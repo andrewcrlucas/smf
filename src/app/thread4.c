@@ -21,11 +21,11 @@ void thread4(void *me)
 		/* Give up processor */
         osThreadYield();
 
-        osMutexAcquire(g_resource1_mutex_id, osWaitForever);
+        osMutexAcquire(g_my_resource_mutex_id, osWaitForever);
 
         /* use resource for a period of time */
         osDelay(5);
 
-        osMutexRelease(g_resource1_mutex_id);
+        osMutexRelease(g_my_resource_mutex_id);
 	}
 }

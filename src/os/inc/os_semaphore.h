@@ -14,15 +14,15 @@
 /* os */
 #include "cmsis_os2.h"
 
-#define SEMAPHORE_TABLE(ENTRY)                   \
-	  /* _name, _count, _initial_count, _attr */ \
-	ENTRY(empty, 3,      3,              NULL)   \
-	ENTRY(full,  3,      0,              NULL)
+#define SEMAPHORE_TABLE(ENTRY)            \
+	  /* _name, _count, _initial_count */ \
+	ENTRY(empty, 3,      3)               \
+	ENTRY(full,  3,      0)
 
-#define EXPAND_AS_SEMAPHORE_ID(_name, _count, _initial_count, _attr) osSemaphoreId_t g_##_name##_id;
+#define EXPAND_AS_OS_SEMAPHORE_ID(_name, _count, _initial_count) osSemaphoreId_t g_##_name##_id;
 
 /* Global Objects of the format g_##_name##_id */
-SEMAPHORE_TABLE(EXPAND_AS_SEMAPHORE_ID)
+SEMAPHORE_TABLE(EXPAND_AS_OS_SEMAPHORE_ID)
 
 /* Public Prototypes */
 void os_semaphore_init(void);

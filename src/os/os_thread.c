@@ -19,7 +19,7 @@
 #include "thread8.h"
 #include "thread9.h"
 
-#define EXPAND_AS_THREAD_ATTR(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
+#define EXPAND_AS_OS_THREAD_ATTR(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
 	osThreadAttr_t _name##_attr =                                                                                   \
 	{                                                                                                               \
         .name = #_name,                                                                                             \
@@ -32,11 +32,13 @@
         .tz_module = _tz_module                                                                                     \
 	};
 
-#define EXPAND_AS_THREAD_NEW(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
+#define EXPAND_AS_OS_THREAD_NEW(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
     g_##_name##_thread_id = osThreadNew(_name, (void *) 0, &_name##_attr);
 
 void os_thread_init(void)
 {
-    THREAD_TABLE(EXPAND_AS_THREAD_ATTR)
-    THREAD_TABLE(EXPAND_AS_THREAD_NEW)
+	/* Declare attr objects */
+    THREAD_TABLE(EXPAND_AS_OS_THREAD_ATTR)
+	/* Create thread objects */
+    THREAD_TABLE(EXPAND_AS_OS_THREAD_NEW)
 }

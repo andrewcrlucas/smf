@@ -16,12 +16,12 @@
 
 #define MUTEX_TABLE(ENTRY) \
 	  /* _name, _attr */   \
-	ENTRY(resource1, NULL)
+	ENTRY(my_resource)
 
-#define EXPAND_AS_MUTEX_ID(_name, _attr) osMutexId_t g_##_name##_mutex_id;
+#define EXPAND_AS_OS_MUTEX_ID(_name) osMutexId_t g_##_name##_mutex_id;
 
 /* Global Objects of the format g_##_name##_id */
-MUTEX_TABLE(EXPAND_AS_MUTEX_ID)
+MUTEX_TABLE(EXPAND_AS_OS_MUTEX_ID)
 
 /* Public Prototypes */
 void os_mutex_init(void);
