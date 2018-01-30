@@ -11,4 +11,8 @@ Thread5, Thread6 and Thread7 simulate a thread that needs two other threads to
   complete an operation before progressings.  The communication mechanism used
   is via EventFlags.
 
-  
+ Thread8 and Thread 9 simulate a producer / consumer relationship using a message
+   queue
+   
+ Thread10 is a callback function that is called by a software timer on a
+   periodic basis 
