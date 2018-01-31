@@ -1,5 +1,5 @@
 /*
- * state_machine.c
+ * smf.c
  */
 
 /*****************************************************************************
@@ -14,8 +14,8 @@
 #include <string.h>
 
 /* module specific */
-#include "state_machine.h"
-#include "state_machine_class.h"
+#include "smf.h"
+#include "smf_class.h"
 
 /* project specific */
 //#include "trace_template.h"
@@ -24,7 +24,7 @@
 /*****************************************************************************/
 /* Private Variables                                                         */
 /*****************************************************************************/
-DEFINE_THIS_FILE   /* defines g_this_file[] with the name of the source file */
+DEFINE_THIS_FILE               /* defines filename string required by assert */
 
 /*****************************************************************************
  * Public Interface Functions                                                *
@@ -32,7 +32,7 @@ DEFINE_THIS_FILE   /* defines g_this_file[] with the name of the source file */
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_release_mutex
+  FUNCTION:     smf_release_mutex
 
   SCOPE:
 
@@ -43,14 +43,14 @@ DEFINE_THIS_FILE   /* defines g_this_file[] with the name of the source file */
   DESCRIPTION:
 
 ******************************************************************************/
-__attribute__((weak)) void state_machine_release_mutex(osMutexId_t mutex)
+__attribute__((weak)) void smf_release_mutex(osMutexId_t mutex_id)
 {
-    state_machine_release_mutex_body(mutex);
+    smf_release_mutex_body(mutex_id);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_release_mutex_body
+  FUNCTION:     smf_release_mutex_body
 
   SCOPE:
 
@@ -61,17 +61,17 @@ __attribute__((weak)) void state_machine_release_mutex(osMutexId_t mutex)
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_release_mutex_body(osMutexId_t mutex)
+void smf_release_mutex_body(osMutexId_t mutex_id)
 {
     osStatus_t os_status;
 
-    os_status = osMutexRelease(mutex);
+    os_status = osMutexRelease(mutex_id);
     ASSERT(os_status == osOK);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_send_command_mail
+  FUNCTION:     smf_send_command_mail
 
   SCOPE:
 
@@ -82,15 +82,15 @@ void state_machine_release_mutex_body(osMutexId_t mutex)
   DESCRIPTION:
 
 ******************************************************************************/
-__attribute__((weak)) void state_machine_send_command_message(osMessageQueueId_t message_queue,
+__attribute__((weak)) void smf_send_command_message(osMessageQueueId_t message_queue_id,
                                                              const void * const p_mail)
 {
-    state_machine_send_command_message_body(message_queue, p_mail);
+    smf_send_command_message_body(message_queue_id, p_mail);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_send_command_message_body
+  FUNCTION:     smf_send_command_message_body
 
   SCOPE:
 
@@ -101,18 +101,18 @@ __attribute__((weak)) void state_machine_send_command_message(osMessageQueueId_t
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_send_command_message_body(osMessageQueueId_t message_queue,
+void smf_send_command_message_body(osMessageQueueId_t message_queue_id,
                                              const void * const p_mail)
 {
     osStatus_t os_status;
 
-    os_status = osMessageQueuePut(message_queue, p_mail, 0, 0);
+    os_status = osMessageQueuePut(message_queue_id, p_mail, 0, 0);
     ASSERT(os_status == osOK);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_respond_to_client_with_signal
+  FUNCTION:     smf_respond_to_client_with_signal
 
   SCOPE:
 
@@ -123,14 +123,14 @@ void state_machine_send_command_message_body(osMessageQueueId_t message_queue,
   DESCRIPTION:
 
 ******************************************************************************/
-__attribute__((weak)) void state_machine_respond_to_client_with_signal(osThreadId_t thread_id, int32_t * p_signals)
+__attribute__((weak)) void smf_respond_to_client_with_signal(osThreadId_t thread_id, int32_t * p_signals)
 {
-    state_machine_respond_to_client_with_signal_body(thread_id, p_signals);
+    smf_respond_to_client_with_signal_body(thread_id, p_signals);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_respond_to_client_with_signal_body
+  FUNCTION:     smf_respond_to_client_with_signal_body
 
   SCOPE:
 
@@ -141,19 +141,19 @@ __attribute__((weak)) void state_machine_respond_to_client_with_signal(osThreadI
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_respond_to_client_with_signal_body(osThreadId_t thread_id, int32_t * p_signals)
+void smf_respond_to_client_with_signal_body(osThreadId_t thread_id, int32_t * p_signals)
 {
-    if ((*p_signals != NO_RESPONSE_SIGNAL) &&
+    if ((*p_signals != SMF_NO_RESPONSE_SIGNAL) &&
         (thread_id != NULL))
     {
         osEventFlagsSet(thread_id, *p_signals);
-        *p_signals = NO_RESPONSE_SIGNAL;
+        *p_signals = SMF_NO_RESPONSE_SIGNAL;
     }
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_respond_to_client_with_message
+  FUNCTION:     smf_respond_to_client_with_message
 
   SCOPE:
 
@@ -164,14 +164,14 @@ void state_machine_respond_to_client_with_signal_body(osThreadId_t thread_id, in
   DESCRIPTION:
 
 ******************************************************************************/
-__attribute__((weak)) void state_machine_respond_to_client_with_message(osMessageQueueId_t message_queue_id, uint32_t message)
+__attribute__((weak)) void smf_respond_to_client_with_message(osMessageQueueId_t message_queue_id, uint32_t message)
 {
-    state_machine_respond_to_client_with_message_body(message_queue_id, message);
+    smf_respond_to_client_with_message_body(message_queue_id, message);
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_respond_to_client_with_message_body
+  FUNCTION:     smf_respond_to_client_with_message_body
 
   SCOPE:
 
@@ -182,26 +182,26 @@ __attribute__((weak)) void state_machine_respond_to_client_with_message(osMessag
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_respond_to_client_with_message_body(osMessageQueueId_t message_queue_id, uint32_t message)
+void smf_respond_to_client_with_message_body(osMessageQueueId_t message_queue_id, uint32_t message)
 {
     osStatus_t os_status;
 
-    if (message_queue_id != NO_RESPONSE_MESSAGE)
+    if (message_queue_id != SMF_NO_RESPONSE_MESSAGE)
     {
         os_status = osMessageQueuePut(message_queue_id, (void *) message, 0, 0);
         ASSERT(os_status == osOK);
 
-        message_queue_id = NO_RESPONSE_MESSAGE;
+        message_queue_id = SMF_NO_RESPONSE_MESSAGE;
     }
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine
+  FUNCTION:     smf
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
                 initial_state - starting state
                 p_func - pointer to event pending function
                 instance_id - id for this instance used for tracing
@@ -212,7 +212,7 @@ void state_machine_respond_to_client_with_message_body(osMessageQueueId_t messag
   DESCRIPTION:  constructor
 
 ******************************************************************************/
-void state_machine(state_machine_t * me,
+void smf(smf_t * me,
                    void (*const *p_state_jump_table) (void *),
                    unsigned int initial_state,
                    const char * trace_id,
@@ -252,18 +252,18 @@ void state_machine(state_machine_t * me,
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_
+  FUNCTION:     smf_
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:  deconstructor
 
 ******************************************************************************/
-void state_machine_(state_machine_t * me)
+void smf_(smf_t * me)
 {
 //    if (me->p_trace_template != NULL)
 //    {
@@ -276,29 +276,29 @@ void state_machine_(state_machine_t * me)
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_get_event
+  FUNCTION:     smf_get_event
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      event
 
   DESCRIPTION:  getter for event attribute
 
 ******************************************************************************/
-uint32_t state_machine_get_event(state_machine_t * me)
+uint32_t smf_get_event(smf_t * me)
 {
     return me->event;
-} /*lint !e818*/
+}
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_set_pending_event
+  FUNCTION:     smf_set_pending_event
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
                 pending - event to pend on
 
   RETURNS:      void
@@ -306,18 +306,18 @@ uint32_t state_machine_get_event(state_machine_t * me)
   DESCRIPTION:  setter for pending attribute
 
 ******************************************************************************/
-void state_machine_set_pending_event(state_machine_t * me, unsigned int pending)
+void smf_set_pending_event(smf_t * me, unsigned int pending)
 {
     me->pending = pending;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_change_state
+  FUNCTION:     smf_change_state
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
                 state - state to change to
 
   RETURNS:      void
@@ -325,7 +325,7 @@ void state_machine_set_pending_event(state_machine_t * me, unsigned int pending)
   DESCRIPTION:  triggers a state change
 
 ******************************************************************************/
-void state_machine_change_state(state_machine_t * me, unsigned int state)
+void smf_change_state(smf_t * me, unsigned int state)
 {
     me->next_state = state;
     me->b_change_state = true;
@@ -333,11 +333,11 @@ void state_machine_change_state(state_machine_t * me, unsigned int state)
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_set_delay
+  FUNCTION:     smf_set_delay
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
                 delay - delay variable
 
   RETURNS:      void
@@ -345,14 +345,14 @@ void state_machine_change_state(state_machine_t * me, unsigned int state)
   DESCRIPTION:  set the delay variable
 
 ******************************************************************************/
-void state_machine_set_delay(state_machine_t * me, uint32_t delay)
+void smf_set_delay(smf_t * me, uint32_t delay)
 {
     me->delay = delay;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_set_os_pend_object
+  FUNCTION:     smf_set_os_pend_object
 
   SCOPE:        private
 
@@ -363,14 +363,14 @@ void state_machine_set_delay(state_machine_t * me, uint32_t delay)
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_set_os_pend_object(state_machine_t * me, void * p)
+void smf_set_os_pend_object(smf_t * me, void * p)
 {
     me->os_pend_object.p = p;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_set_os_event_data_dst
+  FUNCTION:     smf_set_os_event_data_dst
 
   SCOPE:        private
 
@@ -381,79 +381,79 @@ void state_machine_set_os_pend_object(state_machine_t * me, void * p)
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_set_os_event_data_dst(p_state_machine_t me, void * p_os_event_data_dst)
+void smf_set_os_event_data_dst(p_smf_t me, void * p_os_event_data_dst)
 {
     me->p_os_event_data_dst = p_os_event_data_dst;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_disable_tracing
+  FUNCTION:     smf_disable_tracing
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_disable_tracing(state_machine_t * me)
+void smf_disable_tracing(smf_t * me)
 {
     me->b_trace_enabled = false;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_enable_tracing
+  FUNCTION:     smf_enable_tracing
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_enable_tracing(state_machine_t * me)
+void smf_enable_tracing(smf_t * me)
 {
     me->b_trace_enabled = true;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_set_halt_event
+  FUNCTION:     smf_set_halt_event
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_set_halt_event(state_machine_t * me)
+void smf_set_halt_event(smf_t * me)
 {
     me->b_halt_event = true;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_clr_halt_event
+  FUNCTION:     smf_clr_halt_event
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_clr_halt_event(state_machine_t * me)
+void smf_clr_halt_event(smf_t * me)
 {
     me->b_halt_event = false;
     me->b_halt_event_polling = false;
@@ -461,36 +461,36 @@ void state_machine_clr_halt_event(state_machine_t * me)
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_enable_halt_event_polling
+  FUNCTION:     smf_enable_halt_event_polling
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:
 
 ******************************************************************************/
-void state_machine_enable_halt_event_polling(state_machine_t * me)
+void smf_enable_halt_event_polling(smf_t * me)
 {
     me->b_halt_event_polling = true;
 }
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_run
+  FUNCTION:     smf_run
 
   SCOPE:        public
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:  executes state jump table
 
 ******************************************************************************/
-void state_machine_run(p_state_machine_t me)
+void smf_run(p_smf_t me)
 {
     /* Verify me pointer and then index into our jump table is valid */
     if ((me == NULL) || (me->state >= me->n_states))
@@ -500,7 +500,7 @@ void state_machine_run(p_state_machine_t me)
     else
     {
         /* Update our event variable */
-        state_machine_trigger_event((p_state_machine_t) me);
+        smf_trigger_event((p_smf_t) me);
         /* Call the appropriate state function */
         me->p_state_jump_table[me->state](me);
     }
@@ -508,18 +508,18 @@ void state_machine_run(p_state_machine_t me)
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_trigger_event
+  FUNCTION:     smf_trigger_event
 
   SCOPE:        private
 
-  PARAMETERS:   me - pointer to state_machine instance
+  PARAMETERS:   me - pointer to smf instance
 
   RETURNS:      void
 
   DESCRIPTION:  handles the sequencing of events
 
 ******************************************************************************/
-void state_machine_trigger_event(state_machine_t * me)
+void smf_trigger_event(smf_t * me)
 {
     if (me->event == EXIT_EVENT)
     {
@@ -539,14 +539,14 @@ void state_machine_trigger_event(state_machine_t * me)
         if ((me->event == ENTRY_EVENT) || (me->b_change_state != true))
         {
             if ((me->b_halt_event_polling == true) &&
-                (me->delay != 0) &&
-                (me->pending != NO_OS_EVENT))
+                (me->delay != 0)                   &&
+                (me->pending != NO_EVENT))
             {
-                me->event = state_machine_pend_on_event_and_poll_for_halt_event(me);
+                me->event = smf_pend_on_event_and_poll_for_halt_event(me);
             }
             else
             {
-                me->event = state_machine_pend_on_event(me);
+                me->event = smf_pend_on_event(me);
             }
         }
         else
@@ -559,7 +559,7 @@ void state_machine_trigger_event(state_machine_t * me)
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_pend_on_event_and_poll_for_halt_event
+  FUNCTION:     smf_pend_on_event_and_poll_for_halt_event
 
   SCOPE:
 
@@ -570,23 +570,23 @@ void state_machine_trigger_event(state_machine_t * me)
   DESCRIPTION:
 
 ******************************************************************************/
-unsigned int state_machine_pend_on_event_and_poll_for_halt_event(state_machine_t * me)
+unsigned int smf_pend_on_event_and_poll_for_halt_event(smf_t * me)
 {
     unsigned int event;
 
     me->delay_counter = me->delay;
-    me->delay = HALT_EVENT_POLLING_PERIOD;
+    me->delay = SMF_HALT_EVENT_POLLING_PERIOD;
 
     do
     {
-        if (me->delay_counter < HALT_EVENT_POLLING_PERIOD)
+        if (me->delay_counter < SMF_HALT_EVENT_POLLING_PERIOD)
         {
-            /* remaining delay is less than HALT_EVENT_POLLING_PERIOD,
+            /* remaining delay is less than SMF_HALT_EVENT_POLLING_PERIOD,
              * so use the remaining delay value for the last delay */
             me->delay = me->delay_counter;
         }
 
-        event = state_machine_pend_on_event(me);
+        event = smf_pend_on_event(me);
 
         if (me->delay_counter != osWaitForever)
         {
@@ -605,7 +605,7 @@ unsigned int state_machine_pend_on_event_and_poll_for_halt_event(state_machine_t
 
 /******************************************************************************
 
-  FUNCTION:     state_machine_pend_on_event
+  FUNCTION:     smf_pend_on_event
 
   SCOPE:
 
@@ -616,16 +616,16 @@ unsigned int state_machine_pend_on_event_and_poll_for_halt_event(state_machine_t
   DESCRIPTION:
 
 ******************************************************************************/
-unsigned int state_machine_pend_on_event(state_machine_t * me)
+unsigned int smf_pend_on_event(smf_t * me)
 {
     osStatus_t os_status;
     unsigned int event;
 
     switch (me->pending)
     {
-        case NO_OS_EVENT:
+        case NO_EVENT:
         {
-            event = NO_OS_EVENT;
+            event = NO_EVENT;
             break;
         }
 
@@ -633,13 +633,14 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
         {
             os_status = osDelay(me->delay);
             ASSERT(os_status == osOK);
+
             event = TIMEOUT_EVENT;
             break;
         }
 
         case MUTEX_ACQUIRED_EVENT:
         {
-            os_status = osMutexAcquire(me->os_pend_object.mutex, me->delay);
+            os_status = osMutexAcquire(me->os_pend_object.mutex_id, me->delay);
 
             if (os_status == osOK)
             {
@@ -651,7 +652,27 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
             }
             else
             {
-                ASSERT(false); /* bad status */
+                ASSERT(false);
+            }
+
+            break;
+        }
+
+        case SEMAPHORE_ACQUIRED_EVENT:
+        {
+            os_status = osSemaphoreAcquire(me->os_pend_object.semaphore_id, me->delay);
+
+            if (os_status == osOK)
+            {
+                event = SEMAPHORE_ACQUIRED_EVENT;
+            }
+            else if (os_status == osErrorTimeout)
+            {
+                event = TIMEOUT_EVENT;
+            }
+            else
+            {
+                ASSERT(false);
             }
 
             break;
@@ -661,7 +682,7 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
         {
             uint32_t return_value;
 
-            return_value = osThreadFlagsWait(me->os_pend_object.signal_mask, osFlagsWaitAny, me->delay);
+            return_value = osThreadFlagsWait(me->os_pend_object.mask, osFlagsWaitAny, me->delay);
 
             if ((return_value & (1ul << ((sizeof(return_value) * 8) - 1))) == 0)
             {
@@ -678,7 +699,43 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
 
                 if (os_status == osOK)
                 {
-                    event = NO_OS_EVENT;
+                    event = NO_EVENT;
+                }
+                else if (os_status == osErrorTimeout)
+                {
+                    event = TIMEOUT_EVENT;
+                }
+                else
+                {
+                    ASSERT(false); /* bad status */
+                }
+            }
+
+            break;
+        }
+
+        case FLAG_RECEIVED_EVENT:
+        {
+            uint32_t return_value;
+
+            return_value = osEventFlagsWait(me->os_pend_object.event_flags_id, me->os_pend_object.mask, osFlagsWaitAny, me->delay);
+
+            if ((return_value & (1ul << ((sizeof(return_value) * 8) - 1))) == 0)
+            {
+                /* Top bit is clear meaning that a flag is received */
+
+                /* copy signal mask to destination */
+                *(uint32_t *) me->p_os_event_data_dst = return_value;
+                event = SIGNAL_RECEIVED_EVENT;
+            }
+            else
+            {
+                /* Top bit is set meaning that an error was returned, cast as error status */
+                os_status = (osStatus_t) return_value;
+
+                if (os_status == osOK)
+                {
+                    event = NO_EVENT;
                 }
                 else if (os_status == osErrorTimeout)
                 {
@@ -695,7 +752,7 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
 
         case MESSAGE_RECEIVED_EVENT:
         {
-            os_status = osMessageQueueGet(me->os_pend_object.message_queue, (uint8_t *) me->p_os_event_data_dst, 0, me->delay);
+            os_status = osMessageQueueGet(me->os_pend_object.message_queue_id, (uint8_t *) me->p_os_event_data_dst, 0, me->delay);
 
             if (os_status == osOK)
             {
@@ -707,7 +764,7 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
             }
             else if (os_status == osErrorResource)
             {
-                event = NO_OS_EVENT;
+                event = NO_EVENT;
             }
             else
             {
@@ -726,4 +783,3 @@ unsigned int state_machine_pend_on_event(state_machine_t * me)
 
     return event;
 }
-

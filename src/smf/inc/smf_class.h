@@ -1,22 +1,24 @@
 /*
- * state_machine_class.c
+ * smf_class.c
  */
 
-#ifndef STATE_MACHINE_CLASS_H
-#define STATE_MACHINE_CLASS_H
+#ifndef SMF_CLASS_H
+#define SMF_CLASS_H
 
 /*****************************************************************************
  * User Defined Datatypes                                                    *
  *****************************************************************************/
 typedef union
 {
-    int32_t signal_mask;
-    osMessageQueueId_t message_queue;
-    osMutexId_t mutex;
+    int32_t mask;
+    osMutexId_t mutex_id;
+    osSemaphoreId_t semaphore_id;
+    osEventFlagsId_t event_flags_id;
+    osMessageQueueId_t message_queue_id;
     void * p;
 } os_pend_object_t;
 
-typedef struct state_machine
+typedef struct smf
 {
     unsigned int state;
     unsigned int next_state;
@@ -35,14 +37,14 @@ typedef struct state_machine
     bool b_trace_enabled;
     volatile bool b_halt_event;
     bool b_halt_event_polling;
-} state_machine_t;
+} smf_t;
 
 #endif
 
-extern unsigned int state_machine_pend_on_event(state_machine_t *);
-extern unsigned int state_machine_pend_on_event_and_poll_for_halt_event(state_machine_t *);
-extern void state_machine_trigger_event(p_state_machine_t);
-extern void state_machine_respond_to_client_with_signal_body(osThreadId_t, int32_t *);
-extern void state_machine_respond_to_client_with_message_body(osMessageQueueId_t, uint32_t);
-extern void state_machine_send_command_message_body(osMessageQueueId_t, const void * const);
-extern void state_machine_release_mutex_body(osMutexId_t);
+extern unsigned int smf_pend_on_event(smf_t *);
+extern unsigned int smf_pend_on_event_and_poll_for_halt_event(smf_t *);
+extern void smf_trigger_event(p_smf_t);
+extern void smf_respond_to_client_with_signal_body(osThreadId_t, int32_t *);
+extern void smf_respond_to_client_with_message_body(osMessageQueueId_t, uint32_t);
+extern void smf_send_command_message_body(osMessageQueueId_t, const void * const);
+extern void smf_release_mutex_body(osMutexId_t);
