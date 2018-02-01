@@ -5,3 +5,11 @@ syntax: glob
 *.o
 *.su
 *.hex
+*.html
+*.png
+*.css
+*.js
+*.tex
+*.sty
+latex/Makefile
+latex/make.bat

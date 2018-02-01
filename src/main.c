@@ -15,6 +15,7 @@
 #include "os_semaphore.h"
 #include "os_thread.h"
 #include "os_timer.h"
+#include "heartbeat.h"
 
 /* main function */
 int main(void)
@@ -33,6 +34,8 @@ int main(void)
     os_thread_init();
 
     osTimerStart(g_my_os_timer_id, 100);
+
+    heartbeat_start();
 
     /* Start thread execution */
     osKernelStart ();
