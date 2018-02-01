@@ -5,7 +5,6 @@
 /* module */
 #include "os_thread.h"
 /* project */
-#include "thread0.h"
 #include "thread1.h"
 #include "thread2.h"
 #include "thread3.h"
