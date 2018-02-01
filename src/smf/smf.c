@@ -83,7 +83,7 @@ void smf_release_mutex_body(osMutexId_t mutex_id)
 
 ******************************************************************************/
 __attribute__((weak)) void smf_send_command_message(osMessageQueueId_t message_queue_id,
-                                                             const void * const p_mail)
+                                                    const void * const p_mail)
 {
     smf_send_command_message_body(message_queue_id, p_mail);
 }
@@ -102,7 +102,7 @@ __attribute__((weak)) void smf_send_command_message(osMessageQueueId_t message_q
 
 ******************************************************************************/
 void smf_send_command_message_body(osMessageQueueId_t message_queue_id,
-                                             const void * const p_mail)
+                                   const void * const p_mail)
 {
     osStatus_t os_status;
 
@@ -213,11 +213,11 @@ void smf_respond_to_client_with_message_body(osMessageQueueId_t message_queue_id
 
 ******************************************************************************/
 void smf(smf_t * me,
-                   void (*const *p_state_jump_table) (void *),
-                   unsigned int initial_state,
-                   const char * trace_id,
-                   unsigned int index,
-                   unsigned int n_states)
+         void (*const *p_state_jump_table) (void *),
+         unsigned int initial_state,
+         const char * trace_id,
+         unsigned int index,
+         unsigned int n_states)
 {
     ASSERT(p_state_jump_table != NULL);
 
@@ -783,3 +783,4 @@ unsigned int smf_pend_on_event(smf_t * me)
 
     return event;
 }
+

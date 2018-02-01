@@ -15,13 +15,14 @@
 
 void thread9(void *me)
 {
-	msg_t msg;
+    msg_t msg;
 
-	while(1)
-	{
-	    osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
-	    osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
-	    osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
-	    osDelay(1);
-	}
+    while (1)
+    {
+        osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
+        osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
+        osMessageQueueGet(g_my_message_queue_id, &msg, NULL, osWaitForever);
+        osDelay(1);
+    }
 }
+

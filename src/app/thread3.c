@@ -13,9 +13,9 @@
 
 void thread3(void *me)
 {
-	while(1)
-	{
-		/* Give up processor */
+    while (1)
+    {
+        /* Give up processor */
         osThreadYield();
 
         osMutexAcquire(g_my_resource_mutex_id, osWaitForever);
@@ -24,5 +24,6 @@ void thread3(void *me)
         osDelay(3);
 
         osMutexRelease(g_my_resource_mutex_id);
-	}
+    }
 }
+

@@ -15,11 +15,12 @@
 
 void thread5(void *me)
 {
-	while(1)
-	{
-		/* Give up processor */
+    while (1)
+    {
+        /* Give up processor */
         osDelay(50);
 
         osEventFlagsSet(g_my_flags_event_flags_id, FLAG0);
-	}
+    }
 }
+

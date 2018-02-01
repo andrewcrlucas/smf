@@ -15,10 +15,11 @@
 
 void thread7(void *me)
 {
-	while(1)
-	{
-		osEventFlagsWait(g_my_flags_event_flags_id, (FLAG1 | FLAG0), osFlagsWaitAll, osWaitForever);
-		/* Give up processor */
+    while (1)
+    {
+        osEventFlagsWait(g_my_flags_event_flags_id, (FLAG1 | FLAG0), osFlagsWaitAll, osWaitForever);
+        /* Give up processor */
         osDelay(1);
-	}
+    }
 }
+

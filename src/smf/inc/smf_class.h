@@ -26,7 +26,6 @@ typedef struct smf
     unsigned int event;
     unsigned int pending;
     void (*const * p_state_jump_table) (void *);
-    p_pend_on_event_func_t p_pend_on_event_func;
     bool b_change_state;
 //    p_trace_template_t p_trace_template;
     unsigned int index;

@@ -9,11 +9,11 @@
 #include "cmsis_os2.h"
 /* project */
 #include "RTE_Components.h"
-#include "os_thread.h"
-#include "os_semaphore.h"
-#include "os_mutex.h"
 #include "os_event_flags.h"
 #include "os_message_queue.h"
+#include "os_mutex.h"
+#include "os_semaphore.h"
+#include "os_thread.h"
 #include "os_timer.h"
 
 /* main function */
@@ -43,3 +43,4 @@ int main(void)
         /* Add application code here */
     }
 }
+

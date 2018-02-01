@@ -10,7 +10,8 @@
 
 void thread10_callback(void *me)
 {
-	static int count;
+    static int count;
 
-	count++;
+    count++;
 }
+

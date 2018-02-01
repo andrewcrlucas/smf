@@ -12,11 +12,12 @@
 
 void thread0(void *me)
 {
-	int count = 0;
+    int count = 0;
 
-	while(1)
-	{
-		count++;
+    while (1)
+    {
+        count++;
         osDelay(1);
-	}
+    }
 }
+

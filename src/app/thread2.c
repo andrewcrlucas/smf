@@ -13,10 +13,11 @@
 
 void thread2(void *me)
 {
-	while(1)
-	{
+    while (1)
+    {
         osSemaphoreAcquire(g_full_id, osWaitForever);
         // consume data
         osSemaphoreRelease(g_empty_id);
-	}
+    }
 }
+
