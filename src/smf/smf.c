@@ -1,6 +1,9 @@
-/*
- * smf.c
- */
+/*************************************************************************//**
+
+  @file smf.c
+  @brief Implementation file for the smf object
+
+******************************************************************************/
 
 /*****************************************************************************
  * Includes                                                                  *
@@ -229,8 +232,6 @@ void smf(smf_t * me,
 
     me->next_state = initial_state;
     me->event = EXIT_EVENT;
-    me->b_halt_event = false;
-    me->b_halt_event_polling = false;
 
 //    trace_template_new_and_subscribe(&me->p_trace_template,
 //                                     trace_id,
@@ -424,61 +425,6 @@ void smf_enable_tracing(smf_t * me)
 
 /******************************************************************************
 
-  FUNCTION:     smf_set_halt_event
-
-  SCOPE:        private
-
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:
-
-******************************************************************************/
-void smf_set_halt_event(smf_t * me)
-{
-    me->b_halt_event = true;
-}
-
-/******************************************************************************
-
-  FUNCTION:     smf_clr_halt_event
-
-  SCOPE:        private
-
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:
-
-******************************************************************************/
-void smf_clr_halt_event(smf_t * me)
-{
-    me->b_halt_event = false;
-    me->b_halt_event_polling = false;
-}
-
-/******************************************************************************
-
-  FUNCTION:     smf_enable_halt_event_polling
-
-  SCOPE:        private
-
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:
-
-******************************************************************************/
-void smf_enable_halt_event_polling(smf_t * me)
-{
-    me->b_halt_event_polling = true;
-}
-
-/******************************************************************************
-
   FUNCTION:     smf_run
 
   SCOPE:        public
@@ -526,7 +472,6 @@ void smf_trigger_event(smf_t * me)
         me->b_change_state = false;
         me->event = ENTRY_EVENT;
         me->state = me->next_state;
-        me->b_halt_event_polling = false;
 
 //        if ((me->p_trace_template != NULL) && (me->b_trace_enabled == true))
 //        {
@@ -538,16 +483,7 @@ void smf_trigger_event(smf_t * me)
         /* Do this for both entry events and default events */
         if ((me->event == ENTRY_EVENT) || (me->b_change_state != true))
         {
-            if ((me->b_halt_event_polling == true) &&
-                (me->delay != 0)                   &&
-                (me->pending != NO_EVENT))
-            {
-                me->event = smf_pend_on_event_and_poll_for_halt_event(me);
-            }
-            else
-            {
-                me->event = smf_pend_on_event(me);
-            }
+            me->event = smf_pend_on_event(me);
         }
         else
         {
@@ -555,52 +491,6 @@ void smf_trigger_event(smf_t * me)
             me->event = EXIT_EVENT;
         }
     }
-}
-
-/******************************************************************************
-
-  FUNCTION:     smf_pend_on_event_and_poll_for_halt_event
-
-  SCOPE:
-
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
-
-******************************************************************************/
-unsigned int smf_pend_on_event_and_poll_for_halt_event(smf_t * me)
-{
-    unsigned int event;
-
-    me->delay_counter = me->delay;
-    me->delay = SMF_HALT_EVENT_POLLING_PERIOD;
-
-    do
-    {
-        if (me->delay_counter < SMF_HALT_EVENT_POLLING_PERIOD)
-        {
-            /* remaining delay is less than SMF_HALT_EVENT_POLLING_PERIOD,
-             * so use the remaining delay value for the last delay */
-            me->delay = me->delay_counter;
-        }
-
-        event = smf_pend_on_event(me);
-
-        if (me->delay_counter != osWaitForever)
-        {
-            me->delay_counter = me->delay_counter - me->delay;
-        }
-
-        if (me->b_halt_event == true)
-        {
-            me->b_halt_event = false;
-            return HALT_EVENT;
-        }
-    } while ((me->delay_counter > 0) && (event == TIMEOUT_EVENT));
-
-    return event;
 }
 
 /******************************************************************************

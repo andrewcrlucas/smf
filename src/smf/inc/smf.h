@@ -1,7 +1,9 @@
-/*
- * smf.h
- */
+/*************************************************************************//**
 
+  @file smf.h
+  @brief Public API definition file for the smf object
+
+******************************************************************************/
 #ifndef SMF_H
 #define SMF_H
 
@@ -37,29 +39,17 @@
     smf_set_pending_event((p_smf_t) me, TIMEOUT_EVENT);                       \
     smf_set_delay((p_smf_t) me, timeout);
 
-#define SMF_PEND_ON_DELAY_OR_HALT(timeout)                                    \
-    SMF_PEND_ON_DELAY(timeout)                                                \
-    smf_enable_halt_event_polling((p_smf_t) me);
-
 #define SMF_PEND_ON_MUTEX(mutex,timeout)                                      \
     ASSERT(mutex != NULL);                                                    \
     smf_set_pending_event((p_smf_t) me, MUTEX_ACQUIRED_EVENT);                \
     smf_set_delay((p_smf_t) me, timeout);                                     \
     smf_set_os_pend_object((p_smf_t) me, mutex);
 
-#define SMF_PEND_ON_MUTEX_OR_HALT(mutex,timeout)                              \
-		SMF_PEND_ON_MUTEX(mutex, timeout)                                     \
-        smf_enable_halt_event_polling((p_smf_t) me);
-
 #define SMF_PEND_ON_SEMAPHORE(semaphore,timeout)                              \
     ASSERT(semaphore != NULL);                                                \
     smf_set_pending_event((p_smf_t) me, SEMAPHORE_ACQUIRED_EVENT);            \
     smf_set_delay((p_smf_t) me, timeout);                                     \
     smf_set_os_pend_object((p_smf_t) me, semaphore);
-
-#define SMF_PEND_ON_SEMAPHORE_OR_HALT(semaphore,timeout)                      \
-		SMF_PEND_ON_SEMAPHORE(semaphore, timeout)                             \
-        smf_enable_halt_event_polling((p_smf_t) me);
 
 #define SMF_PEND_ON_SIGNAL(mask,p_signal_dst,timeout)                         \
     ASSERT(p_signal_dst != NULL);                                             \
@@ -68,20 +58,12 @@
     smf_set_os_event_data_dst((p_smf_t) me, p_signal_dst);                    \
     smf_set_os_pend_object((p_smf_t) me, (void *) (mask));
 
-#define SMF_PEND_ON_SIGNAL_OR_HALT(mask,p_signal_dst,timeout)                 \
-    SMF_PEND_ON_SIGNAL(mask,p_signal_dst,timeout)                             \
-    smf_enable_halt_event_polling((p_smf_t) me);
-
 #define SMF_PEND_ON_FLAG(mask,p_flag_dst,timeout)                             \
     ASSERT(p_flag_dst != NULL);                                               \
     smf_set_pending_event((p_smf_t) me, FLAG_RECEIVED_EVENT);                 \
     smf_set_delay((p_smf_t) me, timeout);                                     \
     smf_set_os_event_data_dst((p_smf_t) me, p_flag_dst);                      \
     smf_set_os_pend_object((p_smf_t) me, (void *) (mask));
-
-#define SMF_PEND_ON_FLAG_OR_HALT(mask,p_flag_dst,timeout)                     \
-    SMF_PEND_ON_SIGNAL(mask,p_flag_dst,timeout)                               \
-    smf_enable_halt_event_polling((p_smf_t) me);
 
 #define SMF_PEND_ON_MESSAGE(p_message_queue,p_message_dst,timeout)            \
     ASSERT(p_message_queue != NULL);                                          \
@@ -91,10 +73,6 @@
     smf_set_os_pend_object((p_smf_t) me, p_message_queue);                    \
     smf_set_os_event_data_dst((p_smf_t) me, p_message_dst);
 
-#define SMF_PEND_ON_MESSAGE_OR_HALT(p_message_queue,p_message_dst,timeout)    \
-    SMF_PEND_ON_MESSAGE(p_message_queue,p_message_dst,timeout)                \
-    smf_enable_halt_event_polling((p_smf_t) me);
-
 /*****************************************************************************
  * General Macros                                                            *
  *****************************************************************************/
@@ -103,8 +81,6 @@
 #define SMF_RUN() smf_run((p_smf_t) me)
 #define SMF_ENABLE_TRACING() smf_enable_tracing((p_smf_t) me)
 #define SMF_DISABLE_TRACING() smf_disable_tracing((p_smf_t) me)
-#define SMF_SET_HALT_EVENT(me) smf_set_halt_event((p_smf_t) me)
-#define SMF_CLR_HALT_EVENT(me) smf_clr_halt_event((p_smf_t) me)
 
 #define SMF_RESPOND_WITH_SIGNAL(thread_id, p_signals)                         \
     smf_respond_to_client_with_signal((thread_id), (p_signals))
@@ -121,13 +97,12 @@
 #define SMF_JUMP_TABLE_DECLARATION static void (*const g_smf_jump_table[]) (void *) =
 
 #define SMF_EXPAND_AS_JUMP_TABLE_ENTRIES(a,b) b##_state,
+
 #define SMF_CREATE_JUMP_TABLE(STATE_TABLE)                                    \
     static void (*const g_smf_jump_table[]) (void *) =                        \
     {                                                                         \
         STATE_TABLE(SMF_EXPAND_AS_JUMP_TABLE_ENTRIES)                         \
     };
-
-#define SMF_HALT_EVENT_POLLING_PERIOD (5)
 
 #define SMF_ANY_SIGNAL          (0)
 
@@ -155,14 +130,13 @@ enum
     FLAG_RECEIVED_EVENT,
     FLAG_NOT_RECEIVED_EVENT,
     MESSAGE_RECEIVED_EVENT,
-    MESSAGE_NOT_RECEIVED_EVENT,
-    HALT_EVENT
+    MESSAGE_NOT_RECEIVED_EVENT
 };
 
 typedef uint32_t (* p_pend_on_event_func_t)(p_smf_t);
 
 /* state function prototype */
-#define JUMP_TABLE_DECLARATION(a,b) static void (*const g_state_jump_table[b]) (a) =
+#define JUMP_TABLE_DECLARATION(a,b) static void (*const g_smf_jump_table[b]) (a) =
 
 /*****************************************************************************
  * Object initialization and creation functions                              *
@@ -191,9 +165,6 @@ extern void smf_disable_tracing(p_smf_t);
 extern void smf_enable_tracing(p_smf_t);
 extern void smf_run(p_smf_t);
 extern void smf_run_new(p_smf_t);
-extern void smf_set_halt_event(p_smf_t);
-extern void smf_clr_halt_event(p_smf_t);
-extern void smf_enable_halt_event_polling(p_smf_t);
 extern void smf_respond_to_client_with_signal(osThreadId_t, int32_t *);
 extern void smf_respond_to_client_with_message(osMessageQueueId_t, uint32_t);
 extern void smf_send_command_message(osMessageQueueId_t, const void * const);

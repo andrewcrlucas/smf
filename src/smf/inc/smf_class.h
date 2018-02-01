@@ -1,6 +1,9 @@
-/*
- * smf_class.c
- */
+/*************************************************************************//**
+
+  @file smf_class.c
+  @brief Private class definition file for the smf object
+
+******************************************************************************/
 
 #ifndef SMF_CLASS_H
 #define SMF_CLASS_H
@@ -34,14 +37,11 @@ typedef struct smf
     os_pend_object_t os_pend_object;
     void * p_os_event_data_dst;
     bool b_trace_enabled;
-    volatile bool b_halt_event;
-    bool b_halt_event_polling;
 } smf_t;
 
 #endif
 
 extern unsigned int smf_pend_on_event(smf_t *);
-extern unsigned int smf_pend_on_event_and_poll_for_halt_event(smf_t *);
 extern void smf_trigger_event(p_smf_t);
 extern void smf_respond_to_client_with_signal_body(osThreadId_t, int32_t *);
 extern void smf_respond_to_client_with_message_body(osMessageQueueId_t, uint32_t);
