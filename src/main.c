@@ -16,6 +16,7 @@
 #include "os_thread.h"
 #include "os_timer.h"
 #include "heartbeat.h"
+#include "stm32746g_discovery.h"
 
 /* main function */
 int main(void)
@@ -35,6 +36,11 @@ int main(void)
 
     osTimerStart(g_my_os_timer_id, 100);
 
+    BSP_LED_Init(LED_GREEN);
+    //BSP_LED_DeInit(Led_TypeDef Led);
+    //BSP_LED_On(Led_TypeDef Led);
+    //BSP_LED_Off(Led_TypeDef Led);
+    //BSP_LED_Toggle(Led_TypeDef Led);
     heartbeat_start();
 
     /* Start thread execution */

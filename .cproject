@@ -36,8 +36,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<inputType id="com.atollic.truestudio.as.input.1532059599" name="Input" superClass="com.atollic.truestudio.as.input"/>
@@ -62,8 +66,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_garbage.724367117" name="Prepare dead code removal " superClass="com.atollic.truestudio.gcc.optimization.prep_garbage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -99,8 +107,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gpp.optimization.prep_garbage.2141297436" name="Prepare dead code removal" superClass="com.atollic.truestudio.gpp.optimization.prep_garbage" useByScannerDiscovery="false" value="true" valueType="boolean"/>
@@ -175,8 +187,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<inputType id="com.atollic.truestudio.as.input.1225679436" name="Input" superClass="com.atollic.truestudio.as.input"/>
@@ -201,8 +217,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gcc.optimization.prep_garbage.601164176" name="Prepare dead code removal " superClass="com.atollic.truestudio.gcc.optimization.prep_garbage" value="true" valueType="boolean"/>
@@ -237,8 +257,12 @@
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS-FreeRTOS/9.1.0/Source/portable/GCC/ARM_CM7/r0p1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/ARM/CMSIS/5.2.0/CMSIS/RTOS2/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/BSP/STM32746G-Discovery&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/Drivers/STM32F7xx_HAL_Driver/Inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${cmsis_pack_root}/Keil/STM32F7xx_DFP/2.9.0/MDK/Templates/Inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/Device/STM32F746NGHx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}}/RTE/RTOS&quot;"/>
 								</option>
 								<option id="com.atollic.truestudio.gpp.optimization.prep_garbage.954594477" name="Prepare dead code removal" superClass="com.atollic.truestudio.gpp.optimization.prep_garbage" value="true" valueType="boolean"/>
@@ -284,9 +308,11 @@
 		<toolChainAdapter id="com.atollic.truestudio.mbs.armtools.ArmToolsGccToolChainAdapter" name="Adapter for Atollic TrueSTUDIO ARM GCC toolchain"/>
 		<device Dclock="216000000" Dcore="Cortex-M7" DcoreVersion="r0p1" Dendian="Little-endian" Dfamily="STM32F7 Series" Dfpu="SP_FPU" Dmpu="MPU" Dname="STM32F746NG" DsubFamily="STM32F746" Dvariant="STM32F746NGHx" Dvendor="STMicroelectronics:13" Pname=""/>
 		<files>
+			<file name="RTE/Device/STM32F746NGHx/RTE_Device.h" version="1.4.0"/>
 			<file name="RTE/Device/STM32F746NGHx/system_stm32f7xx.c" version="1.2.0"/>
 			<file name="RTE/RTOS/FreeRTOSConfig.h" version="10.0.0"/>
 			<file name="RTE/Device/STM32F746NGHx/startup_stm32f746xx.S" version="1.2.0"/>
+			<file name="RTE/Device/STM32F746NGHx/stm32f7xx_hal_conf.h" version="1.2.0"/>
 		</files>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>

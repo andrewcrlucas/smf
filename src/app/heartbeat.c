@@ -14,6 +14,7 @@
 
 /* hal */
 //#include "stm32l4xx_hal.h"
+#include "stm32746g_discovery.h"
 
 /* module specific */
 #include "assert.h"
@@ -196,7 +197,7 @@ static void heart_check_reset_source_state(void * p)
         case EXIT_EVENT:
         {
             /* clear reset source after its been read */
-            //__HAL_RCC_CLEAR_RESET_FLAGS();
+            __HAL_RCC_CLEAR_RESET_FLAGS();
             break;
         }
 
@@ -232,6 +233,7 @@ static void heartbeat_fast_state(void * p)
         case TIMEOUT_EVENT:
         {
             //digital_output_toggle(HEARTBEAT_LED);
+            BSP_LED_Toggle(LED_GREEN);
             SMF_PEND_AGAIN();
             break;
         }
@@ -270,6 +272,7 @@ static void heartbeat_slow_state(void * p)
         case TIMEOUT_EVENT:
         {
             //digital_output_toggle(HEARTBEAT_LED);
+            BSP_LED_Toggle(LED_GREEN);
             SMF_PEND_AGAIN();
             break;
         }
@@ -322,7 +325,7 @@ void heartbeat(heartbeat_t * me, unsigned int index)
         #define EXPAND_AS_STRUCT_INIT(_index, _digital_output)                \
             if (index == _index)                                              \
             {                                                                 \
-                /*me->p_reset_source_register = &RCC->CSR; */                 \
+                me->p_reset_source_register = &RCC->CSR;                      \
                 /*me->digital_output = _digital_output;*/                     \
             }
 
