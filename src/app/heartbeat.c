@@ -20,16 +20,16 @@
 #include "const.h"
 //#include "stack_monitor.h"
 
-/******************************************************************************
+/*****************************************************************************
   Private Prototypes
-******************************************************************************/
+ *****************************************************************************/
 HEARTBEAT_STATE_TABLE(SMF_EXPAND_AS_PROTOTYPES)
 
 void heartbeat_thread(void *);
 
-/******************************************************************************
+/*****************************************************************************
   Private Variables
-******************************************************************************/
+ *****************************************************************************/
 DEFINE_THIS_FILE               /* defines filename string required by assert */
 
 SMF_CREATE_JUMP_TABLE(HEARTBEAT_STATE_TABLE)
@@ -38,9 +38,9 @@ SMF_CREATE_JUMP_TABLE(HEARTBEAT_STATE_TABLE)
 
 static heartbeat_t g_heartbeat[N_HEARTBEATS];
 
-/******************************************************************************
+/*****************************************************************************
   Public Functions
-******************************************************************************/
+ *****************************************************************************/
 
 /**************************************************************************//**
 
@@ -64,7 +64,8 @@ void heartbeat_start(void)
 
   @brief Initialization routine for a heartbeat object
 
-  @param thread_index
+  @param thread_index - Index used to distinguish between multiple instances of
+                        the heartbeat object
 
   @return me pointer for thread object
 
@@ -105,7 +106,8 @@ heartbeat_t * heartbeat_init(unsigned int thread_index)
 
   @brief De-initialization routine for a heartbeat object
 
-  @param thread_index
+  @param thread_index - Index used to distinguish between multiple instances of
+                        the heartbeat object
 
   @return void
 
@@ -127,7 +129,7 @@ void heartbeat_deinit(heartbeat_index_t thread_index)
 
   @brief Thread outer loop which runs the state machine framework
 
-  @param me pointer
+  @param me - Pointer to a heartbeat object
 
   @return void
 
@@ -145,7 +147,7 @@ void heartbeat_thread(void * me)
   @brief The initial state which checks the reset source before determining
          how fast to flash the heartbeat
 
-  @param p a void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat object
 
   @return void
 
@@ -210,7 +212,7 @@ static void heart_check_reset_source_state(void * p)
   @brief The fast state which flashes the heartbeat led at a period of
          FAST_DELAY
 
-  @param p a void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat object
 
   @return void
 
@@ -248,7 +250,7 @@ static void heartbeat_fast_state(void * p)
   @brief The fast state which flashes the heartbeat led at a period of
          SLOW_DELAY
 
-  @param p a void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat object
 
   @return void
 
@@ -284,16 +286,16 @@ static void heartbeat_slow_state(void * p)
     }
 }
 
-/******************************************************************************
+/*****************************************************************************
   Private Helper Functions
-******************************************************************************/
+ *****************************************************************************/
 
 /**************************************************************************//**
 
   @brief The heartbeat object constructor
 
-  @param me - pointer to heartbeat object being constructed
-  @param index - index into the array of object structs which corresponds to
+  @param me - Pointer to heartbeat object being constructed
+  @param index - Index into the array of object structs which corresponds to
                  this object
 
   @return void
@@ -339,4 +341,3 @@ void heartbeat(heartbeat_t * me, unsigned int index)
 //                                         NULL);
     }
 }
-

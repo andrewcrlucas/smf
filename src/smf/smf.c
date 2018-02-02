@@ -6,7 +6,7 @@
 ******************************************************************************/
 
 /*****************************************************************************
- * Includes                                                                  *
+  Includes
  *****************************************************************************/
 #include "assert.h"
 #include "cmsis_os2.h"
@@ -24,26 +24,22 @@
 //#include "trace_template.h"
 //#include "target.h"
 
-/*****************************************************************************/
-/* Private Variables                                                         */
-/*****************************************************************************/
+/*****************************************************************************
+  Private variables
+ *****************************************************************************/
 DEFINE_THIS_FILE               /* defines filename string required by assert */
 
 /*****************************************************************************
- * Public Interface Functions                                                *
+  Public functions
  *****************************************************************************/
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_release_mutex
+  @brief - Wraper function necessary for TDD
 
-  SCOPE:
+  @param mutex_id - Mutex identifier
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __attribute__((weak)) void smf_release_mutex(osMutexId_t mutex_id)
@@ -51,17 +47,13 @@ __attribute__((weak)) void smf_release_mutex(osMutexId_t mutex_id)
     smf_release_mutex_body(mutex_id);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_release_mutex_body
+  @brief
 
-  SCOPE:
+  @param mutex_id - Mutex identifier
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_release_mutex_body(osMutexId_t mutex_id)
@@ -72,17 +64,14 @@ void smf_release_mutex_body(osMutexId_t mutex_id)
     ASSERT(os_status == osOK);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_send_command_mail
+  @brief - Wraper function necessary for TDD
 
-  SCOPE:
+  @param message_queue_id - Message queue identifier
+  @param p_mail - Pointer to mail message
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __attribute__((weak)) void smf_send_command_message(osMessageQueueId_t message_queue_id,
@@ -91,17 +80,14 @@ __attribute__((weak)) void smf_send_command_message(osMessageQueueId_t message_q
     smf_send_command_message_body(message_queue_id, p_mail);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_send_command_message_body
+  @brief
 
-  SCOPE:
+  @param message_queue_id - Message queue identifier
+  @param p_mail - Pointer to mail message
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_send_command_message_body(osMessageQueueId_t message_queue_id,
@@ -113,17 +99,14 @@ void smf_send_command_message_body(osMessageQueueId_t message_queue_id,
     ASSERT(os_status == osOK);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_respond_to_client_with_signal
+  @brief - Wraper function necessary for TDD
 
-  SCOPE:
+  @param thread_id - Thread identifier
+  @param p_signals - Pointer to signal mask
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __attribute__((weak)) void smf_respond_to_client_with_signal(osThreadId_t thread_id, int32_t * p_signals)
@@ -131,17 +114,14 @@ __attribute__((weak)) void smf_respond_to_client_with_signal(osThreadId_t thread
     smf_respond_to_client_with_signal_body(thread_id, p_signals);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_respond_to_client_with_signal_body
+  @brief
 
-  SCOPE:
+  @param thread_id - Thread identifier
+  @param p_signals - Pointer to signal mask
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_respond_to_client_with_signal_body(osThreadId_t thread_id, int32_t * p_signals)
@@ -154,17 +134,14 @@ void smf_respond_to_client_with_signal_body(osThreadId_t thread_id, int32_t * p_
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_respond_to_client_with_message
+  @brief - Wraper function necessary for TDD
 
-  SCOPE:
+  @param message_queue_id - Message queue identifier
+  @param message - Message to put in the queue
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __attribute__((weak)) void smf_respond_to_client_with_message(osMessageQueueId_t message_queue_id, uint32_t message)
@@ -172,17 +149,14 @@ __attribute__((weak)) void smf_respond_to_client_with_message(osMessageQueueId_t
     smf_respond_to_client_with_message_body(message_queue_id, message);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_respond_to_client_with_message_body
+  @brief
 
-  SCOPE:
+  @param message_queue_id - Message queue identifier
+  @param message - Message to put in the queue
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_respond_to_client_with_message_body(osMessageQueueId_t message_queue_id, uint32_t message)
@@ -198,21 +172,19 @@ void smf_respond_to_client_with_message_body(osMessageQueueId_t message_queue_id
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf
+  @brief constructor
 
-  SCOPE:        private
+  @param me - Pointer to smf object
+  @param p_state_jump_table - Pointer to table of state machine function
+                              pointers
+  @param initial_state - The state to start the state machine in
+  @param trace_id - Three character string identifying the trace record type
+  @param index - Distinguishes between multiple instances of a state machine
+  @param n_states - Number of states for this state machine
 
-  PARAMETERS:   me - pointer to smf instance
-                initial_state - starting state
-                p_func - pointer to event pending function
-                instance_id - id for this instance used for tracing
-                trace_id - 3 character string to identify trace record type
-
-  RETURNS:      void
-
-  DESCRIPTION:  constructor
+  @return void
 
 ******************************************************************************/
 void smf(smf_t * me,
@@ -251,17 +223,13 @@ void smf(smf_t * me,
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_
+  @brief deconstructor
 
-  SCOPE:        private
+  @param me - Pointer to smf object
 
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:  deconstructor
+  @return void
 
 ******************************************************************************/
 void smf_(smf_t * me)
@@ -275,17 +243,13 @@ void smf_(smf_t * me)
     me->p_state_jump_table = NULL;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_get_event
+  @brief Getter for event attribute
 
-  SCOPE:        private
+  @param me - Pointer to smf object
 
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      event
-
-  DESCRIPTION:  getter for event attribute
+  @return void
 
 ******************************************************************************/
 uint32_t smf_get_event(smf_t * me)
@@ -293,18 +257,14 @@ uint32_t smf_get_event(smf_t * me)
     return me->event;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_set_pending_event
+  @brief Setter for event attribute
 
-  SCOPE:        private
+  @param me - Pointer to smf object
+  @param pending - Event to pend on
 
-  PARAMETERS:   me - pointer to smf instance
-                pending - event to pend on
-
-  RETURNS:      void
-
-  DESCRIPTION:  setter for pending attribute
+  @return void
 
 ******************************************************************************/
 void smf_set_pending_event(smf_t * me, unsigned int pending)
@@ -312,18 +272,14 @@ void smf_set_pending_event(smf_t * me, unsigned int pending)
     me->pending = pending;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_change_state
+  @brief Trigger a state change
 
-  SCOPE:        private
+  @param me - Pointer to smf object
+  @param state - State to change to
 
-  PARAMETERS:   me - pointer to smf instance
-                state - state to change to
-
-  RETURNS:      void
-
-  DESCRIPTION:  triggers a state change
+  @return void
 
 ******************************************************************************/
 void smf_change_state(smf_t * me, unsigned int state)
@@ -332,18 +288,14 @@ void smf_change_state(smf_t * me, unsigned int state)
     me->b_change_state = true;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_set_delay
+  @brief Setter for delay parameter
 
-  SCOPE:        private
+  @param me - Pointer to smf object
+  @param delay - Delay value in ms
 
-  PARAMETERS:   me - pointer to smf instance
-                delay - delay variable
-
-  RETURNS:      void
-
-  DESCRIPTION:  set the delay variable
+  @return void
 
 ******************************************************************************/
 void smf_set_delay(smf_t * me, uint32_t delay)
@@ -351,17 +303,15 @@ void smf_set_delay(smf_t * me, uint32_t delay)
     me->delay = delay;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_set_os_pend_object
+  @brief Updates the pending object pointer to point to the appropriate os
+         object
 
-  SCOPE:        private
+  @param me - Pointer to smf object
+  @param p - Pointer to an os object
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_set_os_pend_object(smf_t * me, void * p)
@@ -369,17 +319,13 @@ void smf_set_os_pend_object(smf_t * me, void * p)
     me->os_pend_object.p = p;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_set_os_event_data_dst
+  @brief
 
-  SCOPE:        private
+  @param me - Pointer to smf object
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_set_os_event_data_dst(p_smf_t me, void * p_os_event_data_dst)
@@ -387,35 +333,13 @@ void smf_set_os_event_data_dst(p_smf_t me, void * p_os_event_data_dst)
     me->p_os_event_data_dst = p_os_event_data_dst;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_disable_tracing
+  @brief Enables tracing for the state machine
 
-  SCOPE:        private
+  @param me - Pointer to smf object
 
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:
-
-******************************************************************************/
-void smf_disable_tracing(smf_t * me)
-{
-    me->b_trace_enabled = false;
-}
-
-/******************************************************************************
-
-  FUNCTION:     smf_enable_tracing
-
-  SCOPE:        private
-
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void smf_enable_tracing(smf_t * me)
@@ -423,17 +347,27 @@ void smf_enable_tracing(smf_t * me)
     me->b_trace_enabled = true;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_run
+  @brief Disables tracing for the state machine
 
-  SCOPE:        public
+  @param me - Pointer to smf object
 
-  PARAMETERS:   me - pointer to smf instance
+  @return void
 
-  RETURNS:      void
+******************************************************************************/
+void smf_disable_tracing(smf_t * me)
+{
+    me->b_trace_enabled = false;
+}
 
-  DESCRIPTION:  executes state jump table
+/**************************************************************************//**
+
+  @brief Gets the next event and issues it to the state machine
+
+  @param me - Pointer to smf object
+
+  @return void
 
 ******************************************************************************/
 void smf_run(p_smf_t me)
@@ -452,17 +386,14 @@ void smf_run(p_smf_t me)
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_trigger_event
+  @brief Generates the next event, either ENTRY_EVENT, EXIT_EVENT or another
+         event provided by the pend_on_event function
 
-  SCOPE:        private
+  @param me - Pointer to smf object
 
-  PARAMETERS:   me - pointer to smf instance
-
-  RETURNS:      void
-
-  DESCRIPTION:  handles the sequencing of events
+  @return void
 
 ******************************************************************************/
 void smf_trigger_event(smf_t * me)
@@ -493,17 +424,13 @@ void smf_trigger_event(smf_t * me)
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     smf_pend_on_event
+  @brief Blocks thread pending an event
 
-  SCOPE:
+  @param me - Pointer to smf object
 
-  PARAMETERS:
-
-  RETURNS:
-
-  DESCRIPTION:
+  @return The event that unblocked the thread
 
 ******************************************************************************/
 unsigned int smf_pend_on_event(smf_t * me)
@@ -673,4 +600,3 @@ unsigned int smf_pend_on_event(smf_t * me)
 
     return event;
 }
-

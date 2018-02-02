@@ -4,12 +4,11 @@
   @brief Private class definition file for the smf object
 
 ******************************************************************************/
-
 #ifndef SMF_CLASS_H
 #define SMF_CLASS_H
 
 /*****************************************************************************
- * User Defined Datatypes                                                    *
+  User defined datatypes
  *****************************************************************************/
 typedef union
 {
@@ -39,11 +38,14 @@ typedef struct smf
     bool b_trace_enabled;
 } smf_t;
 
-#endif
-
+/*****************************************************************************
+  Public prototypes
+ *****************************************************************************/
 extern unsigned int smf_pend_on_event(smf_t *);
 extern void smf_trigger_event(p_smf_t);
 extern void smf_respond_to_client_with_signal_body(osThreadId_t, int32_t *);
 extern void smf_respond_to_client_with_message_body(osMessageQueueId_t, uint32_t);
 extern void smf_send_command_message_body(osMessageQueueId_t, const void * const);
 extern void smf_release_mutex_body(osMutexId_t);
+
+#endif

@@ -8,14 +8,14 @@
 #define SMF_H
 
 /*****************************************************************************
- * Includes                                                                  *
+  Includes
  *****************************************************************************/
 #include <stdbool.h>
 #include <stdint.h>
 #include "cmsis_os2.h"
 
 /*****************************************************************************
- * Initializer macros                                                        *
+  Initializer macros
  *****************************************************************************/
 #define SMF_CONSTRUCTOR(_initial_state, _trace_id, _index, _n_states)         \
     (smf((p_smf_t) me,                                                        \
@@ -28,7 +28,7 @@
 #define SMF_DECONSTRUCTOR() (smf_((p_smf_t) me))
 
 /*****************************************************************************
- * Macros used for pending on events                                         *
+  Macros used for pending on events
  *****************************************************************************/
 #define SMF_PEND_AGAIN()
 
@@ -74,7 +74,7 @@
     smf_set_os_event_data_dst((p_smf_t) me, p_message_dst);
 
 /*****************************************************************************
- * General Macros                                                            *
+  General Macros
  *****************************************************************************/
 #define SMF_MY_EVENT (smf_get_event((p_smf_t) me))
 #define SMF_CHANGE_STATE(a) (smf_change_state((p_smf_t) me, a))
@@ -112,7 +112,7 @@
 #define SMF_SMF_IS_SIGNAL_SET(_signal, _mask) smf_is_signal_set(_signal, _mask)
 
 /*****************************************************************************
- * User Defined Datatypes                                                    *
+  User Defined Datatypes
  *****************************************************************************/
 typedef struct smf * p_smf_t;
 
@@ -139,9 +139,8 @@ typedef uint32_t (* p_pend_on_event_func_t)(p_smf_t);
 #define JUMP_TABLE_DECLARATION(a,b) static void (*const g_smf_jump_table[b]) (a) =
 
 /*****************************************************************************
- * Object initialization and creation functions                              *
+  Public functions
  *****************************************************************************/
-/* Constructor */
 extern void smf(p_smf_t,
                 void (*const *) (void *),
                 unsigned int,
@@ -149,12 +148,7 @@ extern void smf(p_smf_t,
                 unsigned int,
                 unsigned int);
 
-/* Deconstructor */
 extern void smf_(p_smf_t);
-
-/*****************************************************************************
- * Methods (use the macros to call these)                                    *
- *****************************************************************************/
 extern uint32_t smf_get_event(p_smf_t);
 extern void smf_set_pending_event(p_smf_t, unsigned int);
 extern void smf_change_state(p_smf_t, unsigned int);
@@ -171,7 +165,7 @@ extern void smf_send_command_message(osMessageQueueId_t, const void * const);
 extern void smf_release_mutex(osMutexId_t);
 
 /*****************************************************************************
- * Inline Public Functions                                                   *
+  Inline functions
  *****************************************************************************/
 /* NOTE: use SMF_IS_SIGNAL_SET macro to call smf_is_signal_set for consistency */
 inline static bool smf_is_signal_set(int32_t signal, int32_t requested_signal_mask)
