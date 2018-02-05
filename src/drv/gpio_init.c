@@ -6,7 +6,7 @@
 ******************************************************************************/
 
 /*****************************************************************************
- * Includes                                                                  *
+  Includes
  *****************************************************************************/
 #include "stm32f7xx_hal.h"
 
@@ -15,26 +15,25 @@
 #include "gpio_init_class.h"
 
 /*****************************************************************************
- * Private Variables                                                         *
+  Private Variables
  *****************************************************************************/
 
 GPIO_InitTypeDef g_gpio_init_struct;
 
 /*****************************************************************************
- * Public Functions                                                          *
+  Public Functions
  *****************************************************************************/
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_output
+  @brief
 
-  SCOPE:        public
+  @param port
+  @param pin
+  @param speed
+  @param pull
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __weak void gpio_init_output(GPIO_TypeDef * port, uint32_t pin, uint32_t speed, uint32_t pull)
@@ -42,17 +41,16 @@ __weak void gpio_init_output(GPIO_TypeDef * port, uint32_t pin, uint32_t speed, 
     gpio_init_output_body(port, pin, speed, pull);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_output_body
+  @brief
 
-  SCOPE:        public
+  @param port
+  @param pin
+  @param speed
+  @param pull
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void gpio_init_output_body(GPIO_TypeDef * port, uint32_t pin, uint32_t speed, uint32_t pull)
@@ -65,17 +63,14 @@ void gpio_init_output_body(GPIO_TypeDef * port, uint32_t pin, uint32_t speed, ui
     HAL_GPIO_Init(port, &g_gpio_init_struct);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_input
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __weak void gpio_init_input(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -83,17 +78,14 @@ __weak void gpio_init_input(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
     gpio_init_input_body(GPIOx, GPIO_Pin);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_input_body
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void gpio_init_input_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -105,17 +97,14 @@ void gpio_init_input_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
     HAL_GPIO_Init(GPIOx, &g_gpio_init_struct);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_alternate_function
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __weak void gpio_init_alternate_function(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -123,17 +112,14 @@ __weak void gpio_init_alternate_function(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin
     gpio_init_alternate_function_body(GPIOx, GPIO_Pin);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_input_body
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void gpio_init_alternate_function_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -146,17 +132,14 @@ void gpio_init_alternate_function_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
     HAL_GPIO_Init(GPIOx, &g_gpio_init_struct);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_analog
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __weak void gpio_init_analog(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -164,17 +147,14 @@ __weak void gpio_init_analog(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
     gpio_init_analog_body(GPIOx, GPIO_Pin);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_analog_body
+  @brief
 
-  SCOPE:        public
+  @param GPIOx
+  @param GPIO_Pin
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void gpio_init_analog_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
@@ -186,17 +166,16 @@ void gpio_init_analog_body(GPIO_TypeDef * GPIOx, uint32_t GPIO_Pin)
     HAL_GPIO_Init(GPIOx, &g_gpio_init_struct);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_exti
+  @brief
 
-  SCOPE:        public
+  @param p_port
+  @param pin
+  @param mode
+  @param pull
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 __weak void gpio_init_exti(GPIO_TypeDef * p_port, uint32_t pin, uint32_t mode, uint32_t pull)
@@ -204,17 +183,16 @@ __weak void gpio_init_exti(GPIO_TypeDef * p_port, uint32_t pin, uint32_t mode, u
     gpio_init_exti_body(p_port, pin, mode, pull);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     gpio_init_analog_body
+  @brief
 
-  SCOPE:        public
+  @param p_port
+  @param pin
+  @param mode
+  @param pull
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void gpio_init_exti_body(GPIO_TypeDef * p_port, uint32_t pin, uint32_t mode, uint32_t pull)
@@ -225,7 +203,3 @@ void gpio_init_exti_body(GPIO_TypeDef * p_port, uint32_t pin, uint32_t mode, uin
 
     HAL_GPIO_Init(p_port, &g_gpio_init_struct);
 }
-
-/*****************************************************************************
- * Private Helper Functions                                                  *
- *****************************************************************************/

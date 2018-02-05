@@ -8,7 +8,7 @@
 #define DIGITAL_OUTPUT_H
 
 /*****************************************************************************
- * Defined and Enumerated Constants                                          *
+  Defined and Enumerated Constants
  *****************************************************************************/
 /* ----------- INSTANCE_NAME ---------- GROUP ------ GPIO_PIN ---- DEFAULT_STATE - FREQ - PULL ---- TRACE_ENABLED ----- */
 #define DIGITAL_OUTPUT_TABLE(ENTRY)                                                                        \
@@ -16,9 +16,9 @@
 
 #define EXPAND_AS_DIGITAL_OUTPUT_ENUM(id, group, pin, _default_state, _freq, _pull, b_trace_enabled) id,
 
-/******************************************************************************
-* Public Defined Datatypes
-******************************************************************************/
+/*****************************************************************************
+  Public Defined Datatypes
+ *****************************************************************************/
 typedef enum
 {
     OUTPUT_LOW = 0,
@@ -40,7 +40,7 @@ typedef enum
 typedef struct digital_output * p_digital_output_t;
 
 /*****************************************************************************
- * Public Prototypes                                                         *
+  Public Prototypes
  *****************************************************************************/
 extern p_digital_output_t digital_output_init(void);
 

@@ -6,7 +6,7 @@
 ******************************************************************************/
 
 /*****************************************************************************
- * Includes                                                                  *
+  Includes
  *****************************************************************************/
 #include "stm32f7xx_hal.h"
 #include <stdbool.h>
@@ -19,44 +19,36 @@
 #include "gpio_init.h"
 
 /*****************************************************************************
- * Private Variables                                                         *
+  Private Variables
  *****************************************************************************/
 
 static digital_output_t g_digital_output;
 
 /*****************************************************************************
- * Public Functions                                                          *
+  Public Functions
  *****************************************************************************/
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_toggle
+  @brief
 
-  SCOPE:        public
+  @param index
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
-__weak void digital_output_toggle(digital_output_index_t digital_output_index)
+__weak void digital_output_toggle(digital_output_index_t index)
 {
-    digital_output_toggle_body(digital_output_index);
+    digital_output_toggle_body(index);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_toggle_body
+  @brief
 
-  SCOPE:        public
+  @param index
 
-  PARAMETERS:
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void digital_output_toggle_body(digital_output_index_t index)
@@ -66,37 +58,29 @@ void digital_output_toggle_body(digital_output_index_t index)
     HAL_GPIO_TogglePin(me->digital_output_gpio[index].group, me->digital_output_gpio[index].pin);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_set
+  @brief
 
-  SCOPE:        public
+  @param index
+  @param state
 
-  PARAMETERS:   digital_output_index_t - thread_index
-                int32_t - signal
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
-__weak void digital_output_set(digital_output_index_t digital_output_index, digital_output_state_t digital_output)
+__weak void digital_output_set(digital_output_index_t index, digital_output_state_t state)
 {
-    digital_output_set_body(digital_output_index, digital_output);
+    digital_output_set_body(index, state);
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_set_body
+  @brief
 
-  SCOPE:        public
+  @param index
+  @param state
 
-  PARAMETERS:   digital_output_index_t - thread_index
-                int32_t - signal
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
 void digital_output_set_body(digital_output_index_t index, digital_output_state_t digital_output_state)
@@ -121,17 +105,13 @@ void digital_output_set_body(digital_output_index_t index, digital_output_state_
     }
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_init
+  @brief
 
-  SCOPE:        public
+  @param void
 
-  PARAMETERS:   thread_instance -
-
-  RETURNS:      me - pointer
-
-  DESCRIPTION:
+  @return instance pointer
 
 ******************************************************************************/
 digital_output_t * digital_output_init(void)
@@ -160,20 +140,16 @@ digital_output_t * digital_output_init(void)
     return &g_digital_output;
 }
 
-/******************************************************************************
+/**************************************************************************//**
 
-  FUNCTION:     digital_output_deinit
+  @brief
 
-  SCOPE:        public
+  @param index
 
-  PARAMETERS:   me - pointer
-
-  RETURNS:      void
-
-  DESCRIPTION:
+  @return void
 
 ******************************************************************************/
-void digital_output_deinit(digital_output_index_t thread_index)
+void digital_output_deinit(digital_output_index_t index)
 {
 //    digital_output_t * me = &g_digital_output;
 
