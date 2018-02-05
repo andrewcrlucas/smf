@@ -19,7 +19,7 @@
 
 /******** INSTANCE ****** DIGITAL_OUTPUT **/
 #define HEARTBEAT_TABLE(ENTRY) \
-    ENTRY(HEARTBEAT_1, LED_GREEN)
+    ENTRY(HEARTBEAT_1, HEARTBEAT_LED)
 
 #define EXPAND_AS_HEARTBEAT_ENUM(_index, _digital_output) _index,
 

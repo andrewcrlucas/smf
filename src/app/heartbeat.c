@@ -13,8 +13,7 @@
 #include "heartbeat_class.h"
 
 /* hal */
-//#include "stm32l4xx_hal.h"
-#include "stm32746g_discovery.h"
+#include "stm32f7xx_hal.h"
 
 /* module specific */
 #include "assert.h"
@@ -232,8 +231,7 @@ static void heartbeat_fast_state(void * p)
 
         case TIMEOUT_EVENT:
         {
-            //digital_output_toggle(HEARTBEAT_LED);
-            BSP_LED_Toggle(me->digital_output);
+            digital_output_toggle(HEARTBEAT_LED);
             SMF_PEND_AGAIN();
             break;
         }
@@ -271,8 +269,7 @@ static void heartbeat_slow_state(void * p)
 
         case TIMEOUT_EVENT:
         {
-            //digital_output_toggle(HEARTBEAT_LED);
-            BSP_LED_Toggle(me->digital_output);
+            digital_output_toggle(HEARTBEAT_LED);
             SMF_PEND_AGAIN();
             break;
         }

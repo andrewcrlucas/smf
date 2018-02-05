@@ -10,7 +10,7 @@
 /*****************************************************************************
   Includes
  *****************************************************************************/
-//#include "digital_output.h"
+#include "digital_output.h"
 #include "smf.h"
 #include "smf_class.h"
 
@@ -36,8 +36,7 @@ typedef struct
 {
     smf_t super;
     osThreadId_t thread_id;
-    //digital_output_index_t digital_output;
-    int digital_output;
+    digital_output_index_t digital_output;
     //p_trace_template_t p_trace_template_reset_source;
     uint32_t volatile const * p_reset_source_register;
     uint8_t reset_source;
