@@ -233,7 +233,7 @@ static void heartbeat_fast_state(void * p)
         case TIMEOUT_EVENT:
         {
             //digital_output_toggle(HEARTBEAT_LED);
-            BSP_LED_Toggle(LED_GREEN);
+            BSP_LED_Toggle(me->digital_output);
             SMF_PEND_AGAIN();
             break;
         }
@@ -272,7 +272,7 @@ static void heartbeat_slow_state(void * p)
         case TIMEOUT_EVENT:
         {
             //digital_output_toggle(HEARTBEAT_LED);
-            BSP_LED_Toggle(LED_GREEN);
+            BSP_LED_Toggle(me->digital_output);
             SMF_PEND_AGAIN();
             break;
         }
@@ -322,11 +322,11 @@ void heartbeat(heartbeat_t * me, unsigned int index)
     else
     {
         /* initialize struct from table in .h file */
-        #define EXPAND_AS_STRUCT_INIT(_index, _digital_output)                \
-            if (index == _index)                                              \
-            {                                                                 \
-                me->p_reset_source_register = &RCC->CSR;                      \
-                /*me->digital_output = _digital_output;*/                     \
+        #define EXPAND_AS_STRUCT_INIT(_index, _digital_output) \
+            if (index == _index)                               \
+            {                                                  \
+                me->p_reset_source_register = &RCC->CSR;       \
+                me->digital_output = _digital_output;          \
             }
 
         HEARTBEAT_TABLE(EXPAND_AS_STRUCT_INIT)
