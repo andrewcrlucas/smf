@@ -5,9 +5,9 @@
 
 ******************************************************************************/
 
-/*****************************************************************************
- * Includes                                                                  *
- *****************************************************************************/
+/******************************************************************************
+  Includes
+******************************************************************************/
 /* module */
 #include "os_semaphore.h"
 /* os */
@@ -26,6 +26,15 @@
 #define EXPAND_AS_OS_SEMAPHORE_NEW(_name, _count, _initial_count) g_##_name##_id = osSemaphoreNew(_count, _initial_count, &_name##_attr);
 #define EXPAND_AS_OS_SEMAPHORE_ADD_TO_REGISTRY(_name, _count, _initial_count) vQueueAddToRegistry(g_##_name##_id, #_name);
 
+/**************************************************************************//**
+
+  @brief - Initialization function for semaphores
+
+  @param void
+
+  @return void
+
+******************************************************************************/
 void os_semaphore_init(void)
 {
     /* Declare attr objects */

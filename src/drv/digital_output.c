@@ -1,13 +1,13 @@
-/*************************************************************************//**
+/**************************************************************************//**
 
   @file digital_output.c
   @brief Implementation file for the digital_output object
 
 ******************************************************************************/
 
-/*****************************************************************************
+/******************************************************************************
   Includes
- *****************************************************************************/
+******************************************************************************/
 #include "stm32f7xx_hal.h"
 #include <stdbool.h>
 //#include "trace_template.h"
@@ -18,15 +18,15 @@
 
 #include "gpio_init.h"
 
-/*****************************************************************************
+/******************************************************************************
   Private Variables
- *****************************************************************************/
+******************************************************************************/
 
 static digital_output_t g_digital_output;
 
-/*****************************************************************************
+/******************************************************************************
   Public Functions
- *****************************************************************************/
+******************************************************************************/
 
 /**************************************************************************//**
 
@@ -55,7 +55,8 @@ void digital_output_toggle_body(digital_output_index_t index)
 {
     digital_output_t * me = &g_digital_output;
 
-    HAL_GPIO_TogglePin(me->digital_output_gpio[index].group, me->digital_output_gpio[index].pin);
+    HAL_GPIO_TogglePin(me->digital_output_gpio[index].group,
+                       me->digital_output_gpio[index].pin);
 }
 
 /**************************************************************************//**
@@ -68,7 +69,8 @@ void digital_output_toggle_body(digital_output_index_t index)
   @return void
 
 ******************************************************************************/
-__weak void digital_output_set(digital_output_index_t index, digital_output_state_t state)
+__weak void digital_output_set(digital_output_index_t index,
+                               digital_output_state_t state)
 {
     digital_output_set_body(index, state);
 }
@@ -83,17 +85,20 @@ __weak void digital_output_set(digital_output_index_t index, digital_output_stat
   @return void
 
 ******************************************************************************/
-void digital_output_set_body(digital_output_index_t index, digital_output_state_t digital_output_state)
+void digital_output_set_body(digital_output_index_t index,
+                             digital_output_state_t digital_output_state)
 {
     digital_output_t * me = &g_digital_output;
 
     if (digital_output_state == OUTPUT_HIGH)
     {
-        HAL_GPIO_WritePin(me->digital_output_gpio[index].group, me->digital_output_gpio[index].pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(me->digital_output_gpio[index].group,
+                          me->digital_output_gpio[index].pin, GPIO_PIN_SET);
     }
     else
     {
-        HAL_GPIO_WritePin(me->digital_output_gpio[index].group, me->digital_output_gpio[index].pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(me->digital_output_gpio[index].group,
+                          me->digital_output_gpio[index].pin, GPIO_PIN_RESET);
     }
 
     if (me->digital_output_gpio[index].b_trace_enabled == true)

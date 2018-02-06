@@ -147,7 +147,8 @@ void heartbeat_thread(void * me)
   @brief The initial state which checks the reset source before determining
          how fast to flash the heartbeat
 
-  @param p - A void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat
+             object
 
   @return void
 
@@ -172,7 +173,8 @@ static void heart_check_reset_source_state(void * p)
             }
             else
             {
-                me->reset_source = (uint8_t) ((*(me->p_reset_source_register)) >> 24);
+                me->reset_source =
+                    (uint8_t) ((*(me->p_reset_source_register)) >> 24);
 
                 /* capture reset source to trace */
 //                trace_template_capture(me->p_trace_template_reset_source);
@@ -212,7 +214,8 @@ static void heart_check_reset_source_state(void * p)
   @brief The fast state which flashes the heartbeat led at a period of
          FAST_DELAY
 
-  @param p - A void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat
+             object
 
   @return void
 
@@ -250,7 +253,8 @@ static void heartbeat_fast_state(void * p)
   @brief The fast state which flashes the heartbeat led at a period of
          SLOW_DELAY
 
-  @param p - A void pointer corresponding to the me pointer of a heartbeat object
+  @param p - A void pointer corresponding to the me pointer of a heartbeat
+             object
 
   @return void
 

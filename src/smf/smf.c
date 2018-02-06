@@ -1,13 +1,13 @@
-/*************************************************************************//**
+/**************************************************************************//**
 
   @file smf.c
   @brief Implementation file for the smf object
 
 ******************************************************************************/
 
-/*****************************************************************************
+/******************************************************************************
   Includes
- *****************************************************************************/
+******************************************************************************/
 #include "assert.h"
 #include "cmsis_os2.h"
 
@@ -24,14 +24,14 @@
 //#include "trace_template.h"
 //#include "target.h"
 
-/*****************************************************************************
+/******************************************************************************
   Private variables
- *****************************************************************************/
+******************************************************************************/
 DEFINE_THIS_FILE               /* defines filename string required by assert */
 
-/*****************************************************************************
+/******************************************************************************
   Public functions
- *****************************************************************************/
+******************************************************************************/
 
 /**************************************************************************//**
 
@@ -477,7 +477,8 @@ unsigned int smf_pend_on_event(smf_t * me)
 
         case SEMAPHORE_ACQUIRED_EVENT:
         {
-            os_status = osSemaphoreAcquire(me->os_pend_object.semaphore_id, me->delay);
+            os_status = osSemaphoreAcquire(me->os_pend_object.semaphore_id,
+                                           me->delay);
 
             if (os_status == osOK)
             {
@@ -499,7 +500,9 @@ unsigned int smf_pend_on_event(smf_t * me)
         {
             uint32_t return_value;
 
-            return_value = osThreadFlagsWait(me->os_pend_object.mask, osFlagsWaitAny, me->delay);
+            return_value = osThreadFlagsWait(me->os_pend_object.mask,
+                                             osFlagsWaitAny,
+                                             me->delay);
 
             if ((return_value & (1ul << ((sizeof(return_value) * 8) - 1))) == 0)
             {
@@ -511,7 +514,7 @@ unsigned int smf_pend_on_event(smf_t * me)
             }
             else
             {
-                /* Top bit is set meaning that an error was returned, cast as error status */
+                /* Top bit is set meaning that an error was returned */
                 os_status = (osStatus_t) return_value;
 
                 if (os_status == osOK)
@@ -535,7 +538,10 @@ unsigned int smf_pend_on_event(smf_t * me)
         {
             uint32_t return_value;
 
-            return_value = osEventFlagsWait(me->os_pend_object.event_flags_id, me->os_pend_object.mask, osFlagsWaitAny, me->delay);
+            return_value = osEventFlagsWait(me->os_pend_object.event_flags_id,
+                                            me->os_pend_object.mask,
+                                            osFlagsWaitAny,
+                                            me->delay);
 
             if ((return_value & (1ul << ((sizeof(return_value) * 8) - 1))) == 0)
             {
@@ -547,7 +553,7 @@ unsigned int smf_pend_on_event(smf_t * me)
             }
             else
             {
-                /* Top bit is set meaning that an error was returned, cast as error status */
+                /* Top bit is set meaning that an error was returned */
                 os_status = (osStatus_t) return_value;
 
                 if (os_status == osOK)
@@ -569,7 +575,10 @@ unsigned int smf_pend_on_event(smf_t * me)
 
         case MESSAGE_RECEIVED_EVENT:
         {
-            os_status = osMessageQueueGet(me->os_pend_object.message_queue_id, (uint8_t *) me->p_os_event_data_dst, 0, me->delay);
+            os_status = osMessageQueueGet(me->os_pend_object.message_queue_id,
+                                          (uint8_t *) me->p_os_event_data_dst,
+                                          0,
+                                          me->delay);
 
             if (os_status == osOK)
             {

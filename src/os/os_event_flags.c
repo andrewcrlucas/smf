@@ -5,9 +5,9 @@
 
 ******************************************************************************/
 
-/*****************************************************************************
- * Includes                                                                  *
- *****************************************************************************/
+/******************************************************************************
+  Includes
+******************************************************************************/
 /* module */
 #include "os_event_flags.h"
 /* os */
@@ -25,6 +25,15 @@
 
 #define EXPAND_AS_OS_EVENT_FLAGS_NEW(_name) g_##_name##_event_flags_id = osEventFlagsNew(&_name##_attr);
 
+/**************************************************************************//**
+
+  @brief - Initialization function for event flags
+
+  @param void
+
+  @return void
+
+******************************************************************************/
 void os_event_flags_init(void)
 {
     /* Declare attr objects */
@@ -32,4 +41,3 @@ void os_event_flags_init(void)
     /* Create event_flags objects */
     EVENT_FLAGS_TABLE(EXPAND_AS_OS_EVENT_FLAGS_NEW)
 }
-

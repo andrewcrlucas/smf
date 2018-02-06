@@ -1,24 +1,24 @@
-/*************************************************************************//**
+/**************************************************************************//**
 
   @file os_event_flags.h
   @brief
 
 ******************************************************************************/
-
 #ifndef OS_EVENT_FLAGS_H_
 #define OS_EVENT_FLAGS_H_
 
-/*****************************************************************************
- * Includes                                                                  *
- *****************************************************************************/
+/******************************************************************************
+  Includes
+******************************************************************************/
 /* os */
 #include "cmsis_os2.h"
 
 #define EVENT_FLAGS_TABLE(ENTRY) \
-	  /* _name */   \
-	ENTRY(my_flags)
+    /* _name */   \
+    ENTRY(my_flags)
 
-#define EXPAND_AS_OS_EVENT_FLAGS_ID(_name) osEventFlagsId_t g_##_name##_event_flags_id;
+#define EXPAND_AS_OS_EVENT_FLAGS_ID(_name) \
+    osEventFlagsId_t g_##_name##_event_flags_id;
 
 /* Global Objects of the format g_##_name##_event_flags_id */
 EVENT_FLAGS_TABLE(EXPAND_AS_OS_EVENT_FLAGS_ID)

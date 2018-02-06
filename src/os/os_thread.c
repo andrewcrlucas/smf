@@ -5,6 +5,9 @@
 
 ******************************************************************************/
 
+/******************************************************************************
+  Includes
+******************************************************************************/
 /* module */
 #include "os_thread.h"
 /* project */
@@ -34,6 +37,15 @@
 #define EXPAND_AS_OS_THREAD_NEW(_name, _attr_bits, _cb_mem, _cb_size, _stack_mem, _stack_size, _priority, _tz_module) \
     g_##_name##_thread_id = osThreadNew(_name, (void *) 0, &_name##_attr);
 
+/**************************************************************************//**
+
+  @brief - Initialization function for threads
+
+  @param void
+
+  @return void
+
+******************************************************************************/
 void os_thread_init(void)
 {
     /* Declare attr objects */

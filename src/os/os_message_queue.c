@@ -5,9 +5,9 @@
 
 ******************************************************************************/
 
-/*****************************************************************************
- * Includes                                                                  *
- *****************************************************************************/
+/******************************************************************************
+  Includes
+******************************************************************************/
 /* module */
 #include "os_message_queue.h"
 /* os */
@@ -28,6 +28,15 @@
 #define EXPAND_AS_OS_MESSAGE_QUEUE_NEW(_name, _msg_count, _msg_size) g_##_name##_message_queue_id = osMessageQueueNew(_msg_count, _msg_size, &_name##_attr);
 #define EXPAND_AS_OS_MESSAGE_QUEUE_ADD_TO_REGISTRY(_name, _msg_count, _msg_size) vQueueAddToRegistry(g_##_name##_message_queue_id, #_name);
 
+/**************************************************************************//**
+
+  @brief - Initialization function for message queues
+
+  @param void
+
+  @return void
+
+******************************************************************************/
 void os_message_queue_init(void)
 {
     /* Declare attr objects */

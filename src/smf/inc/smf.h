@@ -1,4 +1,4 @@
-/*************************************************************************//**
+/**************************************************************************//**
 
   @file smf.h
   @brief Public API definition file for the smf object
@@ -7,16 +7,16 @@
 #ifndef SMF_H
 #define SMF_H
 
-/*****************************************************************************
+/******************************************************************************
   Includes
- *****************************************************************************/
+******************************************************************************/
 #include <stdbool.h>
 #include <stdint.h>
 #include "cmsis_os2.h"
 
-/*****************************************************************************
+/******************************************************************************
   Initializer macros
- *****************************************************************************/
+******************************************************************************/
 #define SMF_CONSTRUCTOR(_initial_state, _trace_id, _index, _n_states)         \
     (smf((p_smf_t) me,                                                        \
          &g_smf_jump_table[0],                                                \
@@ -27,9 +27,9 @@
 
 #define SMF_DECONSTRUCTOR() (smf_((p_smf_t) me))
 
-/*****************************************************************************
+/******************************************************************************
   Macros used for pending on events
- *****************************************************************************/
+******************************************************************************/
 #define SMF_PEND_AGAIN()
 
 #define SMF_PEND_ON_NO_EVENT()                                                \
@@ -73,9 +73,9 @@
     smf_set_os_pend_object((p_smf_t) me, p_message_queue);                    \
     smf_set_os_event_data_dst((p_smf_t) me, p_message_dst);
 
-/*****************************************************************************
+/******************************************************************************
   General Macros
- *****************************************************************************/
+******************************************************************************/
 #define SMF_MY_EVENT (smf_get_event((p_smf_t) me))
 #define SMF_CHANGE_STATE(a) (smf_change_state((p_smf_t) me, a))
 #define SMF_RUN() smf_run((p_smf_t) me)
@@ -111,9 +111,9 @@
 
 #define SMF_SMF_IS_SIGNAL_SET(_signal, _mask) smf_is_signal_set(_signal, _mask)
 
-/*****************************************************************************
+/******************************************************************************
   User Defined Datatypes
- *****************************************************************************/
+******************************************************************************/
 typedef struct smf * p_smf_t;
 
 enum
@@ -138,9 +138,9 @@ typedef uint32_t (* p_pend_on_event_func_t)(p_smf_t);
 /* state function prototype */
 #define JUMP_TABLE_DECLARATION(a,b) static void (*const g_smf_jump_table[b]) (a) =
 
-/*****************************************************************************
+/******************************************************************************
   Public functions
- *****************************************************************************/
+******************************************************************************/
 extern void smf(p_smf_t,
                 void (*const *) (void *),
                 unsigned int,
@@ -164,11 +164,12 @@ extern void smf_respond_to_client_with_message(osMessageQueueId_t, uint32_t);
 extern void smf_send_command_message(osMessageQueueId_t, const void * const);
 extern void smf_release_mutex(osMutexId_t);
 
-/*****************************************************************************
+/******************************************************************************
   Inline functions
- *****************************************************************************/
-/* NOTE: use SMF_IS_SIGNAL_SET macro to call smf_is_signal_set for consistency */
-inline static bool smf_is_signal_set(int32_t signal, int32_t requested_signal_mask)
+******************************************************************************/
+/* NOTE: use SMF_IS_SIGNAL_SET to call smf_is_signal_set for consistency */
+inline static bool smf_is_signal_set(int32_t signal,
+                                     int32_t requested_signal_mask)
 {
     return ((signal & requested_signal_mask) == requested_signal_mask);
 }
