@@ -8,15 +8,12 @@
 /******************************************************************************
   Includes
 ******************************************************************************/
-#include "stm32f7xx_hal.h"
-#include <stdbool.h>
-//#include "trace_template.h"
-
-/* module header and class */
+/* module */
 #include "digital_output.h"
 #include "digital_output_class.h"
-
+/* drv */
 #include "gpio_init.h"
+//#include "trace_template.h"
 
 /******************************************************************************
   Private Variables
