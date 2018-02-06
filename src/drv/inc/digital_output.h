@@ -10,11 +10,11 @@
 /******************************************************************************
   Defined and Enumerated Constants
 ******************************************************************************/
-/* ----------- INSTANCE_NAME ---------- GROUP ------ GPIO_PIN ---- DEFAULT_STATE - FREQ - PULL ---- TRACE_ENABLED ----- */
-#define DIGITAL_OUTPUT_TABLE(ENTRY)                                                                        \
-    ENTRY(HEARTBEAT_LED,                GPIOI,       GPIO_PIN_1,   LED_OFF,        LOW,   PULLUP,   false) \
+/* ---- INSTANCE_NAME ----GROUP - GPIO_PIN --- DEFAULT_STATE - FREQ - PULL ---- TRACE_ENABLED ----- */
+#define DIGITAL_OUTPUT_TABLE(ENTRY)                                                    \
+    ENTRY(HEARTBEAT_LED,  GPIOI,  GPIO_PIN_1,  LED_OFF,        LOW,   PULLUP,   false) \
 
-#define EXPAND_AS_DIGITAL_OUTPUT_ENUM(id, group, pin, _default_state, _freq, _pull, b_trace_enabled) id,
+#define EXPAND_AS_DIGITAL_OUTPUT_ENUM(_id, _group, _pin, _default_state, _freq, _pull, _b_trace_enabled) _id,
 
 /******************************************************************************
   Public Defined Datatypes

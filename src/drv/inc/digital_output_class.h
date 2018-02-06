@@ -29,7 +29,7 @@ typedef struct digital_output
 {
     digital_output_gpio_t digital_output_gpio[N_DIGITAL_OUTPUTS];
 
-    /* for trace */
+    /* For trace */
     digital_output_index_t digital_output_index;
     digital_output_state_t digital_output_state;
 //    p_trace_template_t p_template;
