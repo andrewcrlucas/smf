@@ -14,6 +14,8 @@
 #include <stdbool.h>
 /* hal */
 #include "stm32f7xx_hal.h"
+/* drv */
+#include "trace_template.h"
 
 /******************************************************************************
   User Defined Datatypes
@@ -32,7 +34,7 @@ typedef struct digital_output
     /* For trace */
     digital_output_index_t digital_output_index;
     digital_output_state_t digital_output_state;
-//    p_trace_template_t p_template;
+    p_trace_template_t p_template;
 } digital_output_t;
 
 /******************************************************************************

@@ -13,7 +13,7 @@
 #include "digital_output_class.h"
 /* drv */
 #include "gpio_init.h"
-//#include "trace_template.h"
+#include "trace_template.h"
 
 /******************************************************************************
   Private Variables
@@ -102,7 +102,7 @@ void digital_output_set_body(digital_output_index_t index,
         /* trace digital output state */
         me->digital_output_index = index;
         me->digital_output_state = digital_output_state;
-        //trace_template_capture(g_digital_output.p_template);
+        trace_template_capture(g_digital_output.p_template);
     }
 }
 
@@ -128,13 +128,13 @@ digital_output_t * digital_output_init(void)
 
     digital_output_t * me = &g_digital_output;
 
-//    trace_template_new_and_subscribe(&me->p_template,
-//                                     "DOP",
-//                                     (uint8_t *) &me->digital_output_index,
-//                                     (uint8_t *) &me->digital_output_state,
-//                                     NULL,
-//                                     NULL,
-//                                     NULL);
+    trace_template_new_and_subscribe(&me->p_template,
+                                     "DOP",
+                                     (uint8_t *) &me->digital_output_index,
+                                     (uint8_t *) &me->digital_output_state,
+                                     NULL,
+                                     NULL,
+                                     NULL);
 
     DIGITAL_OUTPUT_TABLE(EXPAND_AS_INIT)
 
@@ -152,12 +152,12 @@ digital_output_t * digital_output_init(void)
 ******************************************************************************/
 void digital_output_deinit(digital_output_index_t index)
 {
-//    digital_output_t * me = &g_digital_output;
+    digital_output_t * me = &g_digital_output;
 
-//    if (me->p_template != NULL)
-//    {
-//        trace_template_delete(me->p_template);
-//        me->p_template = NULL;
-//    }
+    if (me->p_template != NULL)
+    {
+        trace_template_delete(me->p_template);
+        me->p_template = NULL;
+    }
 }
 

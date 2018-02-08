@@ -8,21 +8,16 @@
 /******************************************************************************
   Includes
 ******************************************************************************/
-#include "assert.h"
-#include "cmsis_os2.h"
-
-/* std c library */
+/* module */
+#include "smf.h"
+#include "smf_class.h"
+/* std c */
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-
-/* module specific */
-#include "smf.h"
-#include "smf_class.h"
-
-/* project specific */
-//#include "trace_template.h"
-//#include "target.h"
+/* project */
+#include "assert.h"
+#include "cmsis_os2.h"
 
 /******************************************************************************
   Private variables
@@ -205,13 +200,13 @@ void smf(smf_t * me,
     me->next_state = initial_state;
     me->event = EXIT_EVENT;
 
-//    trace_template_new_and_subscribe(&me->p_trace_template,
-//                                     trace_id,
-//                                     (uint8_t *) &me->index,
-//                                     (uint8_t *) &me->state,
-//                                     NULL,
-//                                     NULL,
-//                                     NULL);
+    trace_template_new_and_subscribe(&me->p_trace_template,
+                                     trace_id,
+                                     (uint8_t *) &me->index,
+                                     (uint8_t *) &me->state,
+                                     NULL,
+                                     NULL,
+                                     NULL);
 
     if (trace_id != NULL)
     {
@@ -234,11 +229,11 @@ void smf(smf_t * me,
 ******************************************************************************/
 void smf_(smf_t * me)
 {
-//    if (me->p_trace_template != NULL)
-//    {
-//        free(me->p_trace_template);
-//        me->p_trace_template = NULL;
-//    }
+    if (me->p_trace_template != NULL)
+    {
+        free(me->p_trace_template);
+        me->p_trace_template = NULL;
+    }
 
     me->p_state_jump_table = NULL;
 }
@@ -404,10 +399,10 @@ void smf_trigger_event(smf_t * me)
         me->event = ENTRY_EVENT;
         me->state = me->next_state;
 
-//        if ((me->p_trace_template != NULL) && (me->b_trace_enabled == true))
-//        {
-//            trace_template_capture(me->p_trace_template);
-//        }
+        if ((me->p_trace_template != NULL) && (me->b_trace_enabled == true))
+        {
+            trace_template_capture(me->p_trace_template);
+        }
     }
     else
     {

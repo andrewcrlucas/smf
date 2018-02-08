@@ -8,6 +8,12 @@
 #define SMF_CLASS_H
 
 /******************************************************************************
+  Includes
+******************************************************************************/
+/* project specific */
+#include "trace_template.h"
+
+/******************************************************************************
   User defined datatypes
 ******************************************************************************/
 typedef union
@@ -29,7 +35,7 @@ typedef struct smf
     unsigned int pending;
     void (*const * p_state_jump_table) (void *);
     bool b_change_state;
-//    p_trace_template_t p_trace_template;
+    p_trace_template_t p_trace_template;
     unsigned int index;
     uint32_t delay;
     uint32_t delay_counter;
