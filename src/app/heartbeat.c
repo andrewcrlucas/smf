@@ -116,11 +116,11 @@ void heartbeat_deinit(heartbeat_index_t thread_index)
 {
     heartbeat_t * me = &g_heartbeat[thread_index];
 
-//    if (me->p_trace_template_reset_source != NULL)
-//    {
-//        trace_template_delete(me->p_trace_template_reset_source);
-//        me->p_trace_template_reset_source = NULL;
-//    }
+    if (me->p_trace_template_reset_source != NULL)
+    {
+        trace_template_delete(me->p_trace_template_reset_source);
+        me->p_trace_template_reset_source = NULL;
+    }
 
     SMF_DECONSTRUCTOR();
 }
@@ -177,7 +177,7 @@ static void heart_check_reset_source_state(void * p)
                     (uint8_t) ((*(me->p_reset_source_register)) >> 24);
 
                 /* capture reset source to trace */
-//                trace_template_capture(me->p_trace_template_reset_source);
+                trace_template_capture(me->p_trace_template_reset_source);
 
                 /* check if reset source is watchdog */
                 if ((me->reset_source & BIT5) != 0)
@@ -335,13 +335,13 @@ void heartbeat(heartbeat_t * me, unsigned int index)
         //TODO put stack monitor subscription under test via a mock
 //        stack_monitor_subscribe(thread_id, "XXX");
 
-//        /* trace highest 8 bits of reset source register */
-//        trace_template_new_and_subscribe(&me->p_trace_template_reset_source,
-//                                         "RST",
-//                                         &me->reset_source,
-//                                         NULL,
-//                                         NULL,
-//                                         NULL,
-//                                         NULL);
+        /* trace highest 8 bits of reset source register */
+        trace_template_new_and_subscribe(&me->p_trace_template_reset_source,
+                                         "RST",
+                                         &me->reset_source,
+                                         NULL,
+                                         NULL,
+                                         NULL,
+                                         NULL);
     }
 }
