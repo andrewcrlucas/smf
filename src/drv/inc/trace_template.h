@@ -47,6 +47,9 @@ typedef struct trace_template_pointers * p_trace_template_pointers_t;
   Prototypes
 ******************************************************************************/
 
+extern p_trace_template_t trace_template_new(const char *);
+extern void trace_template_subscribe(p_trace_template_t, uint8_t *);
+
 /* Function to allocate memory for a trace template and subscribe up to
  * 5 8-bit variables */
 extern void trace_template_new_and_subscribe(p_trace_template_t *,
@@ -57,19 +60,10 @@ extern void trace_template_new_and_subscribe(p_trace_template_t *,
                                              uint8_t *,
                                              uint8_t *);
 
-/* Function to deallocate memory used by a trace template */
-extern void trace_template_delete(p_trace_template_t);
-
 /* This function captures a new record to the trace based on the template */
 extern void trace_template_capture(p_trace_template_t);
 
-//TODO move this prototype to class file when class file exists
-extern void trace_template_new_and_subscribe_body(p_trace_template_t *,
-                                                  const char *,
-                                                  uint8_t *,
-                                                  uint8_t *,
-                                                  uint8_t *,
-                                                  uint8_t *,
-                                                  uint8_t *);
+/* Function to deallocate memory used by a trace template */
+extern void trace_template_delete(p_trace_template_t);
 
 #endif
