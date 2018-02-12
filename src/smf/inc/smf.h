@@ -84,6 +84,8 @@
 #define SMF_ENABLE_TRACING() smf_enable_tracing((p_smf_t) me)
 #define SMF_DISABLE_TRACING() smf_disable_tracing((p_smf_t) me)
 
+#define SMF_SEND_COMMAND_MESSAGE(p_message_queue, p_temp_mail) (smf_send_command_message(p_message_queue, p_temp_mail))
+
 #define SMF_RESPOND_WITH_SIGNAL(thread_id, p_signals)                         \
     smf_respond_to_client_with_signal((thread_id), (p_signals))
 
@@ -132,7 +134,8 @@ enum
     FLAG_RECEIVED_EVENT,
     FLAG_NOT_RECEIVED_EVENT,
     MESSAGE_RECEIVED_EVENT,
-    MESSAGE_NOT_RECEIVED_EVENT
+    MESSAGE_NOT_RECEIVED_EVENT,
+    USER_EVENT
 };
 
 typedef uint32_t (* p_pend_on_event_func_t)(p_smf_t);
