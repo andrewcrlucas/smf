@@ -33,7 +33,7 @@ static digital_output_t g_digital_output;
   @return void
 
 ******************************************************************************/
-__weak void digital_output_toggle(digital_output_index_t index)
+__attribute__((weak)) void digital_output_toggle(digital_output_index_t index)
 {
     digital_output_toggle_body(index);
 }
@@ -65,7 +65,7 @@ void digital_output_toggle_body(digital_output_index_t index)
   @return void
 
 ******************************************************************************/
-__weak void digital_output_set(digital_output_index_t index,
+__attribute__((weak)) void digital_output_set(digital_output_index_t index,
                                digital_output_state_t state)
 {
     digital_output_set_body(index, state);

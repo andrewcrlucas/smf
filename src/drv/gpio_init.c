@@ -33,7 +33,7 @@ GPIO_InitTypeDef g_gpio_init_struct;
   @return void
 
 ******************************************************************************/
-__weak void gpio_init_output(GPIO_TypeDef * port,
+__attribute__((weak)) void gpio_init_output(GPIO_TypeDef * port,
                              uint32_t pin,
                              uint32_t speed,
                              uint32_t pull)
@@ -76,7 +76,7 @@ void gpio_init_output_body(GPIO_TypeDef * port,
   @return void
 
 ******************************************************************************/
-__weak void gpio_init_input(GPIO_TypeDef * p_port, uint32_t pin)
+__attribute__((weak)) void gpio_init_input(GPIO_TypeDef * p_port, uint32_t pin)
 {
     gpio_init_input_body(p_port, pin);
 }
@@ -110,7 +110,7 @@ void gpio_init_input_body(GPIO_TypeDef * p_port, uint32_t pin)
   @return void
 
 ******************************************************************************/
-__weak void gpio_init_alternate_function(GPIO_TypeDef * p_port, uint32_t pin)
+__attribute__((weak)) void gpio_init_alternate_function(GPIO_TypeDef * p_port, uint32_t pin)
 {
     gpio_init_alternate_function_body(p_port, pin);
 }
@@ -145,7 +145,7 @@ void gpio_init_alternate_function_body(GPIO_TypeDef * p_port, uint32_t pin)
   @return void
 
 ******************************************************************************/
-__weak void gpio_init_analog(GPIO_TypeDef * p_port, uint32_t pin)
+__attribute__((weak)) void gpio_init_analog(GPIO_TypeDef * p_port, uint32_t pin)
 {
     gpio_init_analog_body(p_port, pin);
 }
@@ -181,7 +181,7 @@ void gpio_init_analog_body(GPIO_TypeDef * p_port, uint32_t pin)
   @return void
 
 ******************************************************************************/
-__weak void gpio_init_exti(GPIO_TypeDef * p_port,
+__attribute__((weak)) void gpio_init_exti(GPIO_TypeDef * p_port,
                            uint32_t pin,
                            uint32_t mode,
                            uint32_t pull)
